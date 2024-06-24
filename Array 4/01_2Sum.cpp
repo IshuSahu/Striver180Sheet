@@ -15,7 +15,6 @@ vector<int> twoSum(int n, vector<int> &arr, int target) {
     return { -1, -1};
 }
 
-
 // better approch using Map;
 /*
 Time Complexity: O(N), where N = size of the array.
