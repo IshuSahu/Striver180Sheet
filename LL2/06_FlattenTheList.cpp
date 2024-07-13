@@ -107,7 +107,6 @@ int main()
     cout << "Original linked list:" << endl;
     printOriginalLinkedList(head, 0);
 
-
     Node *flattened = flattenLinkedList(head);
     cout << "\nFlattened linked list: ";
     printLinkedList(flattened);

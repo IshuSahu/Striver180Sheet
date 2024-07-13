@@ -38,7 +38,6 @@ Node * roratedByK(Node * head, int k){
     return head;
 }
 
-
 int main()
 {
     // Create a sample linked list: 1 -> 2 -> 3 -> 4 -> 5

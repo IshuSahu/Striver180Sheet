@@ -14,7 +14,7 @@ public:
     }
 };
 
-// this wil rever all the K even if it is also Perfectly kth
+// this wil reverse all the K even if it is also Perfectly kth
 Node *reverseLLKsize(Node *head1, int k)
 {
     Node *prev = nullptr;
@@ -22,7 +22,6 @@ Node *reverseLLKsize(Node *head1, int k)
     Node *nextptr = nullptr;
     int count = 0;
 
-    // This will reverse the first k nodes of the linked list
     while (curr != nullptr && count < k)
     {
         nextptr = curr->next;
@@ -32,12 +31,12 @@ Node *reverseLLKsize(Node *head1, int k)
         count++;
     }
 
-    // Now nextptr is pointing to (k+1)th node
-    // head1 is the last node in the reversed list and needs to be connected to the result of the next reverse operation
-    if (head1 != nullptr)
-    {
-        head1->next = curr; // This will ensure the last node of reversed part connects to the remaining nodes
-    }
+    // // Now nextptr is pointing to (k+1)th node
+    // // head1 is the last node in the reversed list and needs to be connected to the result of the next reverse operation
+    // if (head1 != nullptr)
+    // {
+    //     head1->next = curr; // This will ensure the last node of reversed part connects to the remaining nodes
+    // }
 
     // Recursively call for the remaining nodes, and connect the end of reversed part to the next reversed part
     if (nextptr != nullptr)
@@ -153,9 +152,9 @@ int main()
     head->next->next->next->next->next->next = new Node(7);
     head->next->next->next->next->next->next->next = new Node(8);
 
+    Node *reversedHead = reverseLLKsize(head, 3);
     // Node* reversedHead =reverseList(head);
-    // Node *reversedHead = reverseLLKsize(head, 3);
-    Node *reversedHead = kReverse(head, 3);
+    // Node *reversedHead = kReverse(head, 3);
 
     Node *current = reversedHead;
     while (current)

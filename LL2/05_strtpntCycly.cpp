@@ -51,7 +51,7 @@ int StartingpointOfLoop(Node *head)
     return tortoise->next->data;
 }
 
-Node *detectCycle(Node *head)
+Node *detectCyclePnt(Node *head)
 {
     Node *slow = head;
     Node *fast = head;
@@ -94,7 +94,8 @@ int main()
     // }
     // cout << "null" << endl;
 
-    cout << StartingpointOfLoop(head) << endl;
+    // cout << StartingpointOfLoop(head) << endl;
+    cout << detectCyclePnt(head) << endl;
 
     return 0;
 }

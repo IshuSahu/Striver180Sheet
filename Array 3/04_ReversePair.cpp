@@ -90,6 +90,7 @@ int mergeSort(vector<int> &arr, int low, int high)
 
     return cnt;
 }
+
 int team(vector<int> &skill, int n)
 {
     return mergeSort(skill, 0, n - 1);
