@@ -1,36 +1,40 @@
 
 
-
 #include <bits/stdc++.h>
 using namespace std;
 // time complexity O(n);
-int solve(vector<int>& a) {
+int solve(vector<int> &a)
+{
     int maxLen = 0;
     unordered_map<int, int> sumIndexMap;
     int sum = 0;
-    
-    for (int i = 0; i < a.size(); i++) {
+
+    for (int i = 0; i < a.size(); i++)
+    {
         sum += a[i];
 
-        if (sum == 0) {
+        if (sum == 0)
+        {
             maxLen = i + 1;
-        } else if (sumIndexMap.find(sum) != sumIndexMap.end()) {
+        }
+        else if (sumIndexMap.find(sum) != sumIndexMap.end())
+        {
             maxLen = max(maxLen, i - sumIndexMap[sum]);
-        } else {
+        }
+        else
+        {
             sumIndexMap[sum] = i;
         }
     }
 
     return maxLen;
-}
+} 
 
-
-
-int main() {
+int main()
+{
     vector<int> a = {9, -3, 3, -1, 6, -5};
     cout << solve(a) << endl;
 
     return 0;
 }
-
 
