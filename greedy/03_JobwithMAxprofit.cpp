@@ -6,7 +6,6 @@ Input: N = 4, Jobs = {(1,4,20),(2,1,10),(3,1,40),(4,1,30)}
 Output: 2 60
 */
 using namespace std;
-// A structure to represent a job
 struct Job
 {
     int id;

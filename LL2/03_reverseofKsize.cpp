@@ -31,8 +31,6 @@ Node *reverseLLKsize(Node *head1, int k)
         count++;
     }
 
-    // // Now nextptr is pointing to (k+1)th node
-    // // head1 is the last node in the reversed list and needs to be connected to the result of the next reverse operation
     // if (head1 != nullptr)
     // {
     //     head1->next = curr; // This will ensure the last node of reversed part connects to the remaining nodes
@@ -47,27 +45,8 @@ Node *reverseLLKsize(Node *head1, int k)
     // prev is now the new head of the reversed list
     return prev;
 }
-// a given position in the linked list
-Node *getKthNode(Node *temp, int k)
-{
-    // Decrement K as we already
-    // start from the 1st node
-    k -= 1;
 
-    // Decrement K until it reaches
-    // the desired position
-    while (temp != NULL && k > 0)
-    {
-        // Decrement k as temp progresses
-        k--;
 
-        // Move to the next node
-        temp = temp->next;
-    }
-
-    // Return the Kth node
-    return temp;
-}
 Node *reverseList(Node *head)
 {
     Node *prev = nullptr;
@@ -81,22 +60,25 @@ Node *reverseList(Node *head)
     }
     return prev;
 }
-// Function to reverse nodes in groups of K
+Node *getKthNode(Node *temp, int k)
+{
+    k -= 1;
+
+    while (temp != NULL && k > 0)
+    {
+        k--;
+        temp = temp->next;
+    }
+
+    return temp;
+}
 Node *kReverse(Node *head, int k)
 {
-    // Initialize a temporary node to traverse the list
     Node *temp = head;
-
-    // Initialize a pointer to track the ;ast node of the previous group
     Node *prevLast = NULL;
-
-    // Traverse through the linked list
     while (temp != NULL)
     {
-        // Get the Kth node of the current group
         Node *kThNode = getKthNode(temp, k);
-
-        // If the Kth node is NULL(not a complete group)
         if (kThNode == NULL)
         {
             // If there was a previous group, link the last node to the current node
@@ -109,10 +91,8 @@ Node *kReverse(Node *head, int k)
             break;
         }
 
-        // Store the next node after the Kth node
         Node *nextNode = kThNode->next;
 
-        // Disconnect the Kth node to prepare for reversal
         kThNode->next = NULL;
 
         // Reverse the nodes from temp to the Kth node
