@@ -1,18 +1,4 @@
-// Find intersection of Two Linked Lists
 
-/*
-Example 1:
-Input:
-List 1 = [1,3,1,2,4], List 2 = [3,2,4]
-Output:
-2
-
-Example 2:
-Input:
- List1 = [1,2,7], List 2 = [2,8,1]
-Output:
- Null
-*/
 
 #include <bits/stdc++.h>
 using namespace std;

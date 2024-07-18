@@ -37,12 +37,12 @@ int solve2(string str)
     unordered_set<int> st;
     int l = 0; // Pointer to the left side of the window
 
-    for (int i = 0; i < str.length(); i++)
-    { // i for traversing the string
+    for (int i = 0; i < str.length(); i++)                                                                                      
+    { 
         if (st.find(str[i]) != st.end())
-        { // if element present in set
+        { 
             while (l < i && st.find(str[i]) != st.end())
-            { // erase all elements up to the found element
+            { 
                 st.erase(str[l]);
                 l++;
             }

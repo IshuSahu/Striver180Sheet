@@ -26,11 +26,11 @@ vector<int> findMissingRepeatingNumbers1(vector<int> a) {
     int n = a.size(); // size of the array
     int repeating = -1, missing = -1;
 
-    int hash[n+1] = {0};
+    int hash[n+1] = {0};        
 
     for (int i = 0; i < n; i++)
     {
-        hash[a[i]]++;
+        hash[a[i]]++;                                                                          
     }
 
     int repeating =-1, missing =-1;
