@@ -25,6 +25,7 @@ public:
         {
             swap(s[i], s[index]);
             permutationHelper(s, index + 1, res);
+            // backtrack
             swap(s[i], s[index]);
         }
     }
@@ -39,15 +40,13 @@ public:
             s.push_back(i + '0');
         }
         permutationHelper(s, 0, res);
-        // sort the generated permutations
         sort(res.begin(), res.end());
         // make k 0-based indexed to point to kth sequence
         auto it = res.begin() + (k - 1);
         return *it;
     }
 
-
-// M-2
+    // M-2 
     string getPermutation1(int n, int k)
     {
         int fact = 1;
