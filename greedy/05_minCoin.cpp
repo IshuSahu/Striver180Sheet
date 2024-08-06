@@ -14,7 +14,7 @@ int main()
             V -= coins[i];
             ans.push_back(coins[i]);
         }
-        cout<<V<<" ";
+        // cout<<V<<" ";
         if (V == 0)
             break;
     }

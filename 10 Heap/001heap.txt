@@ -1,0 +1,49 @@
+Introduction
+Welcome and introduction to the topic: Heaps.
+Explanation of the real-life analogy of a person staying ahead and how it relates to Heaps.
+
+Basic Concepts
+Heaps are a type of binary tree.
+Heaps do not necessarily need to be balanced binary trees.
+
+Two types of Heaps:
+Max-Heap
+Min-Heap
+
+Max-Heap
+In a Max-Heap, the root element is greater than all elements in its subtrees.
+This property must hold for every node in the binary tree.
+Example:
+Root (6) > children (3, 2).
+Node (5) > children (4, 1).
+
+Min-Heap
+In a Min-Heap, the root element is smaller than all elements in its subtrees.
+This property must hold for every node in the binary tree.
+Example:
+Root (1) < children (3, 2).
+Node (3) < children (4, 5).
+
+Converting Arrays to Heaps
+Conversion involves inserting elements and maintaining the heap property.
+Insert elements one by one and perform "heapify" operations to maintain the heap structure.
+Max-Heapify: If the child is greater than the parent, swap them.
+Min-Heapify: If the child is smaller than the parent, swap them.
+
+Heap Operations
+Insertion
+Insert the element at the end of the heap.
+Compare the inserted element with its parent.
+Swap if the heap property is violated.
+Repeat until the heap property is restored.
+
+Deletion
+Remove the root element.
+Replace the root with the last element in the heap.
+Perform "heapify" operations to restore the heap property.
+Compare the new root with its children and swap with the larger (Max-Heap) or smaller (Min-Heap) child if necessary.
+Repeat until the heap property is restored.
+Example of Heap Operations
+Insert elements [5, 10, 3, 2, 7].
+Perform heapify operations after each insertion to maintain the heap property.
+Deleting elements involves replacing the root and performing heapify operations to restore the heap property.

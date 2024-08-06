@@ -30,7 +30,7 @@ public:
         }
 
         int slot[maxi + 1];
-
+        
         for (int i = 0; i <= maxi; i++)
             slot[i] = -1;
 

@@ -4,7 +4,7 @@ using namespace std;
 void printAns(vector<vector<int>> &ans)
 {
     cout << "The unique subsets are " << endl;
-    cout << "[ ";
+    cout << "{ ";
     for (int i = 0; i < ans.size(); i++)
     {
         cout << "[ ";
@@ -12,7 +12,7 @@ void printAns(vector<vector<int>> &ans)
             cout << ans[i][j] << " ";
         cout << "]";
     }
-    cout << " ]";
+    cout << " }";
 }
 class Solution
 {
@@ -25,10 +25,10 @@ public:
             res.insert(ds);
             return;
         }
+        fun(nums, index + 1, ds, res);
         ds.push_back(nums[index]);
         fun(nums, index + 1, ds, res);
-        ds.pop_back();
-        fun(nums, index + 1, ds, res);
+
     }
     vector<vector<int>> subsetsWithDup(vector<int> &nums)
     {

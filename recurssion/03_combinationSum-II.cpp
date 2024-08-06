@@ -4,66 +4,34 @@ using namespace std;
 class Solution
 {
 public:
-    // void findCombination(int ind, int target, vector<int> &arr, vector<vector<int>> &ans, vector<int> &ds)
-    // {
-
-    //     if (target == 0)
-    //     {
-    //         ans.push_back(ds);
-    //         return;
-    //     }
-    //     for (int i = ind; i < arr.size(); i++)
-    //     {
-    //         if (i > ind && arr[i] == arr[i - 1])
-    //             continue;
-    //         if (arr[i] > target)
-    //             break;
-    //         ds.push_back(arr[i]);
-    //         findCombination(i + 1, target - arr[i], arr, ans, ds);
-    //         ds.pop_back();
-    //     }
-    // }
-    // vector<vector<int>> combinationSum(vector<int> &candidates, int target)
-    // {
-    //     sort(candidates.begin(), candidates.end());
-    //     vector<vector<int>> ans;
-    //     vector<int> ds;
-    //     findCombination(0, target, candidates, ans, ds);
-    //     return ans;
-    // }
-    void helper(int ind, int T, vector<int> &nums, set<vector<int>> &res, vector<int> &temp)
+    void findCombination(int ind, int target, vector<int> &arr, vector<vector<int>> &ans, vector<int> &ds)
     {
-        if (T == 0)
+
+        if (target == 0)
         {
-            // sort(temp.begin(), temp.end());
-            res.insert(temp);
-        }
-        if (ind == nums.size() || T < 0)
-        {
+            ans.push_back(ds);
             return;
         }
-
-        if (nums[ind] <= T)
+        for (int i = ind; i < arr.size(); i++)
         {
-            temp.push_back(nums[ind]);
-            helper(ind + 1, T - nums[ind], nums, res, temp);
-            temp.pop_back();
+            if (i > ind && arr[i] == arr[i - 1])
+                continue;
+            if (arr[i] > target)
+                break;
+            ds.push_back(arr[i]);
+            findCombination(i + 1, target - arr[i], arr, ans, ds);
+            ds.pop_back();
         }
-        helper(ind + 1, T, nums, res, temp);
     }
-    vector<vector<int>> combinationSum(vector<int> &nums, int T)
+    vector<vector<int>> combinationSum(vector<int> &candidates, int target)
     {
+        sort(candidates.begin(), candidates.end());
         vector<vector<int>> ans;
-        vector<int> temp;
-        set<vector<int>> res;
-        helper(0, T, nums, res, temp);
-        for (auto it = res.begin(); it != res.end(); it++)
-        {
-            ans.push_back(*it);
-        }
-
+        vector<int> ds;
+        findCombination(0, target, candidates, ans, ds);
         return ans;
     }
+    
 };
 int main()
 {
