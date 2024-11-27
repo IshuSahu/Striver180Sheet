@@ -19,17 +19,17 @@ int MaxProfit(int *arr, int n)
     }
     return maxProfit;
 }
-int MaxProfit2(int *arr, int n){
+int MaxProfit2(int *arr, int n)
+{
     int maxProfit = 0;
     int mini = arr[0];
     for (int i = 0; i < n; i++)
     {
-        int currProfit = arr[i] -mini;
-        maxProfit = max(maxProfit,currProfit);
-        mini = min(mini,arr[i]); 
+        int currProfit = arr[i] - mini;
+        maxProfit = max(maxProfit, currProfit);
+        mini = min(mini, arr[i]);
     }
     return maxProfit;
-    
 }
 int main()
 {

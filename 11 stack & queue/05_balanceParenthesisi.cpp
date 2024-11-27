@@ -9,6 +9,8 @@ using namespace std;
 bool isValid(string s)
 {
     stack<char> st;
+
+    //for(int i=0 ;i<st.length;i++)
     for (auto it : s)
     {
         if (it == '(' || it == '{' || it == '[')
@@ -18,7 +20,7 @@ bool isValid(string s)
             if (st.size() == 0)
                 return false;
             char ch = st.top();
-            st.pop();
+            st.pop(); // u need to be pop that ele
             /*else if it is nonempty then we will check if the topmost element of the stack is the opposite pair of the closing bracket or not.*/
             if ((it == ')' and ch == '(') or (it == ']' and ch == '[') or (it == '}' and ch == '{'))
                 continue;
