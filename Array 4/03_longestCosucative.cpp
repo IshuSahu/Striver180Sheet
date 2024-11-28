@@ -31,7 +31,6 @@ bool binarySerch(vector<int> &a, int num)
     return false;
 }
 // Time Complexity: O(N2), N = size of the given array.
-
 int longestSuccessiveElements(vector<int> &a)
 {
     int n = a.size(); // size of array

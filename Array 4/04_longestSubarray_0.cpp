@@ -28,7 +28,7 @@ int solve(vector<int> &a)
     }
 
     return maxLen;
-} 
+}
 
 int main()
 {
@@ -37,4 +37,3 @@ int main()
 
     return 0;
 }
-

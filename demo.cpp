@@ -1,49 +1,37 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-bool B_search(vector<int> arr, int T)
-{
-    int low = 0;
-    int high = arr.size() - 1;  
-    while (low <=high)
-    {
-        int mid = (low + high) / 2;
-        if (arr[mid] == T)
-            return true;
-        else if (arr[mid] < T)
-        {
-            low = mid + 1;
-        }
-        else
-        {
-            high = mid - 1;
-        }
-    }
 
-    return false;
-}
 int main()
 {
-    vector<vector<int>> arr = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {11, 12, 13}};
-
-    int m = arr.size();
-    int n = arr[0].size();
-    int T = 9;
-    bool res = 0;
-    for (int i = 0; i < m; i++)
+    vector<int> arr = {3, 4, 5, 3, 2, 1, 4};
+    int n = arr.size();
+    int target = 8;
+    set<vector<int>> res;
+    set<long long> st;
+    sort(arr.begin(), arr.end());
+    for (int i = 0; i < n; i++)
     {
-        if (arr[i][0] <= T && T <= arr[i][n - 1])
+        for (int j = i + 1; j < n; j++)
         {
-            res = B_search(arr[i], T);
+            int T = target - (arr[i] + arr[j]);
+            if (st.find(T) != st.end())
+            {
+                vector<int> tem = {arr[i], arr[j], T};
+                sort(tem.begin(), tem.end());
+                res.insert(tem);
+            }
+            st.insert(arr[j]);
         }
     }
-    if (res)
+     for (auto it : res)
     {
-        cout << "Found";
-    }
-    else
-    {
-        cout << "Not Found";
+        cout << "[";
+        for (auto ele : it)
+        {
+            cout << ele << " ";
+        }
+        cout << "] ";
     }
 
     return 0;

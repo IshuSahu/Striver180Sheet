@@ -37,18 +37,19 @@ int solve2(string str)
     unordered_set<int> st;
     int l = 0; // Pointer to the left side of the window
 
-    for (int i = 0; i < str.length(); i++)                                                                                      
-    { 
+    for (int i = 0; i < str.length(); i++)
+    {
         if (st.find(str[i]) != st.end())
-        { 
+        {
             while (l < i && st.find(str[i]) != st.end())
-            { 
+            {
                 st.erase(str[l]);
                 l++;
             }
         }
 
         st.insert(str[i]);
+        cout << i << " " << l <<" " <<i-l+1<<endl;
         maxL = max(maxL, i - l + 1); // Correct calculation of maxL
     }
 
