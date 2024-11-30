@@ -15,7 +15,7 @@ public:
 
     // Constructors to initialize the
     // data, next, and child pointers
-    Node() : data(0), next(nullptr), child(nullptr){};
+    Node() : data(0), next(nullptr), child(nullptr) {};
     Node(int x) : data(x), next(nullptr), child(nullptr) {}
     Node(int x, Node *nextNode, Node *childNode) : data(x), next(nextNode), child(childNode) {}
 };

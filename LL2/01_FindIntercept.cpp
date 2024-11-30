@@ -32,24 +32,19 @@ public:
 
 // O(1)
 
-Node *interceptnode(Node *head1, Node *head2)
-{
-
-    while (head2 != NULL)
-    {
-        Node *temp = head1;
-        while (temp != NULL)
-        {
-            // if both nodes are same
+Node* interceptnode(Node* head1, Node* head2) {
+    while (head2 != nullptr) {
+        Node* temp = head1;
+        while (temp != nullptr) {
             if (temp == head2)
                 return head2;
             temp = temp->next;
         }
         head2 = head2->next;
     }
-    // intersection is not present between the lists return null
-    return NULL;
+    return nullptr;
 }
+
 // Time Complexity: O(m*n)
 
 Node *interceptPresend(Node *head1, Node *head2)
@@ -89,42 +84,46 @@ Node *intersectionPresent2(Node *head1, Node *head2)
 
     return d1;
 }
-int main()
-{
-    Node *shared = new Node(2);
-    shared->next = new Node(7);
 
-    Node *head1 = new Node(1);
-    head1->next = shared;
+int main() {
+    // Create the shared list
+    Node* shared = new Node(1);
+    shared->next = new Node(3);
+    shared->next->next = new Node(1);
+    shared->next->next->next = new Node(2);
+    shared->next->next->next->next = new Node(4);
 
-    Node *head2 = new Node(8);
-    head2->next = shared;
-    Node *current = head1;
-    cout << "List1" << ": ";
-    while (current)
-    {
+    // Create the second list and link it to the shared list
+    Node* head2 = new Node(3);
+    head2->next = new Node(2);
+    head2->next->next = shared->next->next->next; // Intersection happens here
+
+    // Print List 1
+    cout << "List1: ";
+    Node* current = shared;
+    while (current) {
         cout << current->data << "->";
         current = current->next;
     }
     cout << "null" << endl;
 
+    // Print List 2
     current = head2;
-    cout << "List2" << ": ";
-    while (current)
-    {
+    cout << "List2: ";
+    while (current) {
         cout << current->data << "->";
         current = current->next;
     }
+    cout << "null" << endl;
 
-    // Node* answerNode = interceptnode(head1,head2);
-    // Node* answerNode = interceptnode(head1,head2);
-    Node *answerNode = intersectionPresent2(head1, head2);
-    if (answerNode == NULL)
+    // Find the intersection node
+    // Node* answerNode = interceptnode(shared, head2);
+    Node* answerNode = interceptPresend(shared, head2);
+    if (answerNode == nullptr)
         cout << "No intersection\n";
     else
         cout << "The intersection point is " << answerNode->data << endl;
 
     return 0;
 }
-
 // https://youtu.be/hax-YgdqaGk?si=_w6l7_Jdjqn2X7PL

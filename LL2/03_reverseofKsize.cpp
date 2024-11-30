@@ -21,7 +21,13 @@ Node *reverseLLKsize(Node *head1, int k)
     Node *curr = head1;
     Node *nextptr = nullptr;
     int count = 0;
-
+    Node *temp = head1;
+    int length = 0;
+    while (temp != nullptr)
+    {
+        temp = temp->next;
+        length++;
+    }
     while (curr != nullptr && count < k)
     {
         nextptr = curr->next;
@@ -30,6 +36,7 @@ Node *reverseLLKsize(Node *head1, int k)
         curr = nextptr;
         count++;
     }
+    length = length - count;
 
     // if (head1 != nullptr)
     // {
@@ -37,15 +44,14 @@ Node *reverseLLKsize(Node *head1, int k)
     // }
 
     // Recursively call for the remaining nodes, and connect the end of reversed part to the next reversed part
-    if (nextptr != nullptr)
+    if (nextptr != nullptr && (length / k > 0))
     {
         head1->next = reverseLLKsize(nextptr, k);
     }
-
+    // nextptr = curr;
     // prev is now the new head of the reversed list
     return prev;
 }
-
 
 Node *reverseList(Node *head)
 {
@@ -132,9 +138,9 @@ int main()
     head->next->next->next->next->next->next = new Node(7);
     head->next->next->next->next->next->next->next = new Node(8);
 
-    Node *reversedHead = reverseLLKsize(head, 3);
+    // Node *reversedHead = reverseLLKsize(head, 3);
     // Node* reversedHead =reverseList(head);
-    // Node *reversedHead = kReverse(head, 3);
+    Node *reversedHead = kReverse(head, 3);
 
     Node *current = reversedHead;
     while (current)
