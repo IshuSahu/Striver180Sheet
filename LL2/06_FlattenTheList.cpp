@@ -13,7 +13,7 @@ public:
     Node *next;
     Node *child;
 
-    // Constructors to initialize the
+    // Constructors to initialize the 
     // data, next, and child pointers
     Node() : data(0), next(nullptr), child(nullptr) {};
     Node(int x) : data(x), next(nullptr), child(nullptr) {}
