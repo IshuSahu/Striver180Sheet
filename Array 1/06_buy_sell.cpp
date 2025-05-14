@@ -33,7 +33,7 @@ int MaxProfit2(int *arr, int n)
 }
 int main()
 {
-    int arr[] = {7, 5, 3, 6, 4};
+    int arr[] = {7, 1,5, 3, 6, 4};
     int n = sizeof(arr) / sizeof(arr[0]);
     // int maxPro = MaxProfit(arr, n);
     int maxPro = MaxProfit2(arr, n);

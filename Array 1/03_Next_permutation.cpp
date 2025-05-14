@@ -47,9 +47,10 @@ void Next_Permutation(int *arr, int n)
 
 int main()
 {
-    int arr[] = {1, 2, 3};
-    next_permutation(arr, arr + 3);
+    int arr[] = {1, 2, 4, 3};
+    Next_Permutation(arr,4);
+    // next_permutation(arr, arr + 3);
 
-    cout << arr[0] << " " << arr[1] << " " << arr[2] << endl;
+    // cout << arr[0] << " " << arr[1] << " " << arr[2] << endl;
     return 0;
 }

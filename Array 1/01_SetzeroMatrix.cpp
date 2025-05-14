@@ -25,52 +25,52 @@ void Markcol(vector<vector<int>> &Matrix, int n, int m, int j)
 vector<vector<int>> zeroMatrix(vector<vector<int>> &Matrix, int n, int m)
 {
     // Brute
-    //  for (int i = 0; i < n; i++)
-    //  {
-    //      for (int j = 0; j < m; j++)
-    //      {
-    //          if (Matrix[i][j] == 0)
-    //          {
-    //              MarkRow(Matrix, n, m, i);
-    //              Markcol(Matrix, n, m, j);
-    //          }
-    //      }
-    //  }
-    //  for (int i = 0; i < n; i++)
-    //  {
-    //      for (int j = 0; j < m; j++)
-    //      {
-    //          if (Matrix[i][j] == -1)
-    //          {
-    //              Matrix[i][j] = 0;
-    //          }
-    //      }
-    //  }
+     for (int i = 0; i < n; i++)
+     {
+         for (int j = 0; j < m; j++)
+         {
+             if (Matrix[i][j] == 0)
+             {
+                 MarkRow(Matrix, n, m, i);
+                 Markcol(Matrix, n, m, j);
+             }
+         }
+     }
+     for (int i = 0; i < n; i++)
+     {
+         for (int j = 0; j < m; j++)
+         {
+             if (Matrix[i][j] == -1)
+             {
+                 Matrix[i][j] = 0;
+             }
+         }
+     }
 
-    // Optimal
-    int row[n] = {0};
-    int col[m] = {0};
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < m; j++)
-        {
-            if (Matrix[i][j] == 0)
-            {
-                row[i] = 1;
-                col[j] = 1;
-            }
-        }
-    }
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < m; j++)
-        {
-            if (row[i] || col[j])
-            {
-                Matrix[i][j] = 0;
-            }
-        }
-    }
+    // // Optimal
+    // int row[n] = {0};
+    // int col[m] = {0};
+    // for (int i = 0; i < n; i++)
+    // {
+    //     for (int j = 0; j < m; j++)
+    //     {
+    //         if (Matrix[i][j] == 0)
+    //         {
+    //             row[i] = 1;
+    //             col[j] = 1;
+    //         }
+    //     }
+    // }
+    // for (int i = 0; i < n; i++)
+    // {
+    //     for (int j = 0; j < m; j++)
+    //     {
+    //         if (row[i] || col[j])
+    //         {
+    //             Matrix[i][j] = 0;
+    //         }
+    //     }
+    // }
     return Matrix;
 }
 int main()
