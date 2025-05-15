@@ -1,6 +1,16 @@
 #include<bits/stdc++.h>
 
 using namespace std;
+/*
+Input: 
+n = 4, arr1[] = [1 4 8 10] 
+m = 5, arr2[] = [2 3 9]
+
+Output: 
+arr1[] = [1 2 3 4]
+arr2[] = [8 9 10]
+
+*/
 void merge(int arr1[], int arr2[], int n, int m) {
     int high = n-1;
     int low = 0;
@@ -11,7 +21,7 @@ void merge(int arr1[], int arr2[], int n, int m) {
             swap(arr1[high--],arr2[low++]);
         }
         else{
-            break;
+            break; // because it is sorted array
         }
     }
     sort(arr1, arr1+n);

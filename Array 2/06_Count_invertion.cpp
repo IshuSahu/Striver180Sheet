@@ -70,6 +70,7 @@ int MergeSort(vector<int> &arr, int low, int high){
 
     return cnt;
 }
+
 int numberOfInversions1(vector<int> &arr, int n){
     return MergeSort(arr, 0, n-1);
 }
@@ -77,8 +78,8 @@ int main()
 {
     vector<int> a = {5, 4, 3, 2, 1};
     int n = 5;
-    // int cnt = numberOfInversions(a, n);
-    int cnt = numberOfInversions1(a, n);
+    int cnt = numberOfInversions(a, n);
+    // int cnt = numberOfInversions1(a, n);
     cout << "The number of inversions is: "
          << cnt << endl;
     return 0;

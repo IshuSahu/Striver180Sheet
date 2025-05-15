@@ -1,31 +1,40 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
-int maxSubarraySum2(int *arr, int n){
-    int max_sum= INT_MIN;
-    int sum=0;
+void findDuplicate(vector<int> v)
+{
+    int n = v.size();
+    int arr[n + 1] = {0};
+    int miss = -1, dupli = -1;
     for (int i = 0; i < n; i++)
     {
-        sum=0;
-        for (int j = i; j < n; j++)
-        {
-            sum+=arr[j];
-            if(sum>max_sum){
-                max_sum = sum;
-            }
-        }
-        
+        arr[v[i]]++;
     }
-    
-    return max_sum;
-    
+    for (int i = 1; i <= n; i++)
+    {
+        if (arr[i] == 0)
+        {
+            miss = i;
+        }
+        if (arr[i] == 2)
+        {
+            dupli = i;
+        }
+        if (miss != -1 && dupli != -1)
+        {
+            cout << "misss " << miss << endl;
+            cout << "dupli " << dupli << endl;
+            return;
+        }
+    }
+    cout << "misss " << miss << endl;
+    cout << "dupli " << dupli << endl;
 }
-int main(){
-    int arr[] = { -2, 1, -3, 4, -1, 2, 1, -5, 4};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    // int maxSum = maxSubarraySum1(arr, n);
-    int maxSum = maxSubarraySum2(arr, n);
-    cout << "The maximum subarray sum is: " << maxSum << endl;
-    return 0;
+int main()
+{
+    vector<int> arr;
+    arr = {1, 3, 4, 2, 5, 3};
+    // arr = {1, 1,1,1,1};
+    findDuplicate(arr);
     return 0;
 }
