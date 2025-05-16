@@ -18,7 +18,6 @@ int countPairs(vector<int> &a, int n)
 }
 
 // We will e using merge sort
-
 void Merge(vector<int> &arr, int low, int mid, int high)
 {
     vector<int> temp;    // temporary array
@@ -65,9 +64,9 @@ void Merge(vector<int> &arr, int low, int mid, int high)
 int countPair(vector<int> &arr, int low, int mid, int high)
 {
     int cnt = 0, right = mid + 1;
-    for (int i = low; i <=mid; i++)
+    for (int i = low; i <= mid; i++)
     {
-    // while (right <= high && (long long)arr[i] > 2LL * arr[right])
+        // while (right <= high && (long long)arr[i] > 2LL * arr[right])
 
         while (right <= high && arr[i] > 2 * arr[right])
         {
