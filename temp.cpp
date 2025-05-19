@@ -1,85 +1,36 @@
-#include <iostream>
+#include<bits/stdc++.h>
 
 using namespace std;
-void print_arr(int *arr, int n)
+
+
+int solve(string str)
 {
-    for (int i = 0; i < n; i++)
-    {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
-}
-void Merge(int *arr, int start, int mid, int end)
-{
-    int len1 = mid - start + 1;
-    int len2 = end - mid;
+    if (str.length() == 0)
+        return 0;
+    int maxL = 0;
 
-    int *first = new int[len1];
-    int *second = new int[len2];
-    int k = start;
-    for (int i = 0; i < len1; i++)
+    unordered_set<int> st;
+    int l=0;
+    for (int i = 0; i < str.length(); i++)
     {
-        first[i] = arr[k++];
-    }
-
-    k = mid + 1;
-    for (int i = 0; i < len2; i++)
-    {
-        second[i] = arr[k++];
-    }
-
-    // Meargin two soted array
-    int i, j;
-    k = start;
-    i = 0;
-    j = 0;
-    while (i < len1 && j < len2)
-    {
-        if (first[i] < second[j])
-        {
-            arr[k] = first[i];
-            i++;
+        if(st.find(str[i])!=st.end()){
+            while (l<i && st.find(str[i])!=st.end())
+            {
+                st.erase(str[l]);
+                l++;
+            }
+            
         }
-        else
-        {
-            arr[k] = second[j];
-            j++;
-        }
-        k++;
+        maxL= max(maxL,i-l+1);
+        cout<<l<<endl;
+        st.insert(str[i]);
     }
-    while (i < len1)
-    {
-        arr[k] = first[i];
-        k++;
-        i++;
-    }
-    while (j < len2)
-    {
-        arr[k] = second[j];
-        k++;
-        j++;
-    }
-    delete (first);
-    delete (second);
+    return maxL;
 }
-void Merge_sort(int *arr, int start, int end)
-{
-    int mid;
 
-    if (start < end)
-    {
-        mid = (start + end) / 2;
-        Merge_sort(arr, start, mid);
-        Merge_sort(arr, mid + 1, end);
-        Merge(arr, start, mid, end);
-    }
-}
 int main()
 {
-    int arr[] = {3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 8, 5, 7};
-    int size = sizeof(arr) / sizeof(arr[0]);
-    print_arr(arr, size);
-    Merge_sort(arr, 0, size - 1);
-    print_arr(arr, size);
+    string str = "abcaabcdba";
+    cout << "The length of the longest substring without repeating characters is " << solve(str);
     return 0;
 }
