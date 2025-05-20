@@ -19,7 +19,7 @@ int solve(string str)
                 maxL = max(maxL, j - i);
                 break;
             }
-            st.insert(str[i]);
+            st.insert(str[j]);
         }
     }
     cout << maxL << endl;
