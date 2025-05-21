@@ -1,36 +1,76 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-
-
-int solve(string str)
-{
-    if (str.length() == 0)
-        return 0;
-    int maxL = 0;
-
-    unordered_set<int> st;
-    int l=0;
-    for (int i = 0; i < str.length(); i++)
-    {
-        if(st.find(str[i])!=st.end()){
-            while (l<i && st.find(str[i])!=st.end())
-            {
-                st.erase(str[l]);
-                l++;
-            }
-            
-        }
-        maxL= max(maxL,i-l+1);
-        cout<<l<<endl;
-        st.insert(str[i]);
+class Node{
+public:
+    int data;
+    Node * next;
+    Node *child;
+    Node(int d){
+        data = d;
+        next =nullptr;
+        child = nullptr;
     }
-    return maxL;
-}
 
+};
+void printLinkedList(Node *head)
+{
+    while (head != nullptr)
+    {
+        cout << head->data << " ";
+        head = head->child;
+    }
+    cout << endl;
+}
+Node * flattenLinkedList(Node * head){
+    Node * temp =head;
+    vector<int> arr;
+    while (temp!=nullptr)
+    {
+        Node * temp2 = temp;
+        while (temp2!=nullptr)
+        {
+            arr.push_back(temp2->data);
+            temp2 = temp2->child;
+        }
+        temp = temp->next;
+    }
+    sort(arr.begin(), arr.end());
+    Node *dummyNode = new Node(-1);
+    temp = dummyNode;
+
+    for (int i = 0; i < arr.size(); i++)
+    {
+
+        temp->child = new Node(arr[i]);
+        temp = temp->child;
+    }
+
+    return dummyNode->child;
+    
+}
 int main()
 {
-    string str = "abcaabcdba";
-    cout << "The length of the longest substring without repeating characters is " << solve(str);
+    // Create a linked list with child pointers
+    Node *head = new Node(5);
+    head->child = new Node(14);
+
+    head->next = new Node(10);
+    head->next->child = new Node(4);
+
+    head->next->next = new Node(12);
+    head->next->next->child = new Node(20);
+    head->next->next->child->child = new Node(13);
+
+    head->next->next->next = new Node(7);
+    head->next->next->next->child = new Node(17);
+
+    // cout << "Original linked list:" << endl;
+    // printOriginalLinkedList(head, 0);
+
+    Node *flattened = flattenLinkedList(head);
+    cout << "\nFlattened linked list: ";
+    printLinkedList(flattened);
+
     return 0;
 }

@@ -36,7 +36,8 @@ Node* interceptnode(Node* head1, Node* head2) {
     while (head2 != nullptr) {
         Node* temp = head1;
         while (temp != nullptr) {
-            if (temp == head2)
+            cout<<temp->data<<" "<<head2->data<<endl;
+            if (temp == head2) // actually intersect in memory (Not just value)
                 return head2;
             temp = temp->next;
         }
@@ -96,7 +97,8 @@ int main() {
     // Create the second list and link it to the shared list
     Node* head2 = new Node(3);
     head2->next = new Node(2);
-    head2->next->next = shared->next->next->next; // Intersection happens here
+    head2->next->next = new Node(1);
+    head2->next->next->next = shared->next->next->next; // Intersection happens here
 
     // Print List 1
     cout << "List1: ";
@@ -117,8 +119,8 @@ int main() {
     cout << "null" << endl;
 
     // Find the intersection node
-    // Node* answerNode = interceptnode(shared, head2);
-    Node* answerNode = interceptPresend(shared, head2);
+    Node* answerNode = interceptnode(shared, head2);
+    // Node* answerNode = interceptPresend(shared, head2);
     if (answerNode == nullptr)
         cout << "No intersection\n";
     else

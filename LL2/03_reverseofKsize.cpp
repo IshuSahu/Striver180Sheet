@@ -66,6 +66,7 @@ Node *reverseList(Node *head)
     }
     return prev;
 }
+
 Node *getKthNode(Node *temp, int k)
 {
     k -= 1;
@@ -78,6 +79,7 @@ Node *getKthNode(Node *temp, int k)
 
     return temp;
 }
+
 Node *kReverse(Node *head, int k)
 {
     Node *temp = head;
@@ -139,7 +141,6 @@ int main()
     head->next->next->next->next->next->next->next = new Node(8);
 
     // Node *reversedHead = reverseLLKsize(head, 3);
-    // Node* reversedHead =reverseList(head);
     Node *reversedHead = kReverse(head, 3);
 
     Node *current = reversedHead;
