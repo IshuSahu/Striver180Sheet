@@ -14,27 +14,37 @@ public:
     }
 };
 
-//O(1)
+// O(Number of Nodes present in the list*k)
 
-Node * roratedByK(Node * head, int k){
-    Node * temp = head;
-    Node * pt;
-    int i=0;
-    while (temp->next!=nullptr)
-    {
-        if(i == k){
-            pt = temp;
-        }
-        i++;
+Node* roratedByK(Node* head, int k) {
+    if(head == NULL||head->next == NULL) return head;
+    for(int i=0;i<k;i++) {
+        Node* temp = head;
+        while(temp->next->next != NULL) temp = temp->next;
+        Node* end = temp->next;
+        temp->next = NULL;
+        end->next = head;
+        head = end;
+    }
+    return head;
+}
+Node* rotateRight(Node* head,int k) {
+    if(head == NULL||head->next == NULL||k == 0) return head;
+    //calculating length
+    Node* temp = head;
+    int length = 1;
+    while(temp->next != NULL) {
+        ++length;
         temp = temp->next;
     }
-    cout<<temp->data<<" "<<endl;
+    //link last Node to first Node making circular linklist
     temp->next = head;
-    cout<<temp->next->data<<" "<<endl;
-    head = pt->next;
-    cout<<head->data<<" "<<endl;
-    pt->next = nullptr;
-    // cout<<pt->next->data<<" "<<endl;
+    k = k%length; //when k is more than length of list
+    int end = length-k; //to get end of the list
+    while(end--) temp = temp->next;
+    //breaking last Node link and pointing to NULL
+    head = temp->next;
+    temp->next = NULL;
     return head;
 }
 
@@ -48,7 +58,7 @@ int main()
     head->next->next->next->next = new Node(5);
 
     // Node* reversedHead =reverseList(head);
-    Node *reversedHead = roratedByK(head,2);
+    Node *reversedHead = roratedByK(head,5);
 
     Node *current = reversedHead;
     while (current)

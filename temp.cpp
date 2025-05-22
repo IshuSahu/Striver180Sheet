@@ -1,76 +1,67 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-class Node{
-public:
-    int data;
-    Node * next;
-    Node *child;
-    Node(int d){
-        data = d;
-        next =nullptr;
-        child = nullptr;
-    }
-
+class Node {
+    public:
+        int val;
+        Node * next;
+        Node * random;
+        Node(int d){
+            val=d;
+            next = nullptr;
+            random= nullptr;
+        }
 };
-void printLinkedList(Node *head)
-{
-    while (head != nullptr)
-    {
-        cout << head->data << " ";
-        head = head->child;
-    }
-    cout << endl;
-}
-Node * flattenLinkedList(Node * head){
-    Node * temp =head;
-    vector<int> arr;
+Node * cloneLL(Node * head){
+    Node * temp = head;
+    unordered_map<Node* , Node*> mp;
     while (temp!=nullptr)
     {
-        Node * temp2 = temp;
-        while (temp2!=nullptr)
-        {
-            arr.push_back(temp2->data);
-            temp2 = temp2->child;
-        }
+        Node * NewNode = new Node(temp->val);
+        mp[temp] = NewNode;
         temp = temp->next;
     }
-    sort(arr.begin(), arr.end());
-    Node *dummyNode = new Node(-1);
-    temp = dummyNode;
 
-    for (int i = 0; i < arr.size(); i++)
+    temp = head;
+    while (temp!=nullptr)
     {
-
-        temp->child = new Node(arr[i]);
-        temp = temp->child;
+        Node * cpynode = mp[temp];
+        cpynode->next = mp[temp->next];
+        cpynode->random = mp[temp->random];
+        temp = temp->next;
     }
-
-    return dummyNode->child;
-    
+    return mp[head];
 }
 int main()
 {
-    // Create a linked list with child pointers
-    Node *head = new Node(5);
-    head->child = new Node(14);
+    Node *head = new Node(7);
+    head->next = new Node(14);
+    head->next->next = new Node(21);
+    head->next->next->next = new Node(28);
 
-    head->next = new Node(10);
-    head->next->child = new Node(4);
+    // Assigning random pointers
+    head->random = head->next->next;
+    head->next->random = head;
+    head->next->next->random = head->next->next->next;
+    head->next->next->next->random = head->next;
 
-    head->next->next = new Node(12);
-    head->next->next->child = new Node(20);
-    head->next->next->child->child = new Node(13);
+    Node *result = cloneLL(head);
 
-    head->next->next->next = new Node(7);
-    head->next->next->next->child = new Node(17);
+    Node *current = result;
+    while (current)
+    {
+        cout << current->val << " ";
+        current = current->next;
+    }
+    cout << endl;
 
-    // cout << "Original linked list:" << endl;
-    // printOriginalLinkedList(head, 0);
-
-    Node *flattened = flattenLinkedList(head);
-    cout << "\nFlattened linked list: ";
-    printLinkedList(flattened);
+    current = result;
+    while (current)
+    {
+        Node *temp = current;
+        current = current->next;
+        delete temp;
+    }
 
     return 0;
 }
