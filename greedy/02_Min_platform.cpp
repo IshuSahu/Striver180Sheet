@@ -42,12 +42,12 @@ int countPlatforms1(int n,int arr[],int dep[])
     int i=1,j=0;
     while(i<n && j<n)
     {
-        if(arr[i]<=dep[j])
+        if(arr[i]<=dep[j]) // assignment
         {
             count++;
             i++;
         }
-        else 
+        else //releasing
         {
             count--;
             j++;

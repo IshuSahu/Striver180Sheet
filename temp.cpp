@@ -1,67 +1,52 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-class Node {
-    public:
-        int val;
-        Node * next;
-        Node * random;
-        Node(int d){
-            val=d;
-            next = nullptr;
-            random= nullptr;
-        }
+class Meeting {
+public:
+    int start;
+    int end;
+    int pos;
+
+    Meeting(int s, int e, int p) : start(s), end(e), pos(p) {}
 };
-Node * cloneLL(Node * head){
-    Node * temp = head;
-    unordered_map<Node* , Node*> mp;
-    while (temp!=nullptr)
-    {
-        Node * NewNode = new Node(temp->val);
-        mp[temp] = NewNode;
-        temp = temp->next;
-    }
-
-    temp = head;
-    while (temp!=nullptr)
-    {
-        Node * cpynode = mp[temp];
-        cpynode->next = mp[temp->next];
-        cpynode->random = mp[temp->random];
-        temp = temp->next;
-    }
-    return mp[head];
+static bool camparator(const Meeting &m1,const Meeting &m2){
+    if(m1.end<m2.end) return true;
+    else if(m2.end<m1.end) return false;
+    else if(m1.pos<m2.pos) return true;
+    return false;
 }
-int main()
-{
-    Node *head = new Node(7);
-    head->next = new Node(14);
-    head->next->next = new Node(21);
-    head->next->next->next = new Node(28);
 
-    // Assigning random pointers
-    head->random = head->next->next;
-    head->next->random = head;
-    head->next->next->random = head->next->next->next;
-    head->next->next->next->random = head->next;
-
-    Node *result = cloneLL(head);
-
-    Node *current = result;
-    while (current)
+vector<int> Nmeeting(int *start, int *end, int n){
+    vector<int > ans;
+    
+    vector<Meeting> meeting;
+    for (int i = 0; i < n; i++)
     {
-        cout << current->val << " ";
-        current = current->next;
-    }
-    cout << endl;
-
-    current = result;
-    while (current)
-    {
-        Node *temp = current;
-        current = current->next;
-        delete temp;
+        meeting.push_back(Meeting(start[i],end[i],i+1));
     }
 
+    sort(meeting.begin(),meeting.end(),camparator);
+    int Prev_End_time = meeting[0].end;
+    ans.push_back(meeting[0].pos);
+
+    for (int i = 1; i < n; i++)
+    {
+        if(meeting[i].start>Prev_End_time){
+            ans.push_back(meeting[i].pos);
+            Prev_End_time = meeting[i].end;
+        }
+    }
+    return ans;
+}
+int main(){
+    int n = 6;
+    int start[] = {1, 3, 0, 5, 8, 5};
+    int end[] = {2, 4, 5, 7, 9, 9};
+    vector<int> arr = Nmeeting(start, end, n);
+    for (int i = 0; i < arr.size(); i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    
     return 0;
 }

@@ -1,0 +1,26 @@
+Greedy Algorithm – Short Note
+A Greedy Algorithm is an approach used in optimization problems where the solution is built step by step, always choosing the option that looks best at the moment (i.e., the locally optimal choice), with the hope that this leads to a globally optimal solution.
+
+Key Characteristics:
+    Local Optimal Choice: It chooses the best option at each step without considering the overall problem.
+    No Backtracking: Once a choice is made, it is never reconsidered.
+    Efficiency: Greedy algorithms are generally faster and simpler, often having linear or polynomial time complexity.
+
+When it works:
+Greedy algorithms work well when the problem has the greedy-choice property (a global optimum can be arrived at by selecting local optima) and optimal substructure (an optimal solution contains optimal solutions to subproblems).
+
+Examples:
+Activity Selection Problem
+Huffman Coding
+Dijkstra’s Algorithm (for shortest path)
+Fractional Knapsack Problem
+
+Limitation:
+It doesn’t always give the optimal solution for all problems (e.g., 0/1 Knapsack Problem).
+
+
+
+Point to know while sorving Problem:
+- generally sorting is done first while appy G Algorithm
+- Sometime we don't realis the we are apllying ageedy because it came from inside
+- 

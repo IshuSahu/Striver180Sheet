@@ -31,7 +31,7 @@ public:
 
         int slot[maxi + 1];
         
-        for (int i = 0; i <= maxi; i++)
+        for (int i = 0; i <= maxi; i++) // Initalize slot with -1
             slot[i] = -1;
 
         int countJobs = 0, jobProfit = 0;

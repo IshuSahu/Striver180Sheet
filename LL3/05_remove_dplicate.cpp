@@ -20,7 +20,6 @@ int removeDuplicates(int arr[], int n)
 }
 // Time complexity: O(n*log(n))+O(n)
 // Space Complexity: O(n)
-
 int removeDuplicates1(int arr[], int n)
 {
     int i = 0;
