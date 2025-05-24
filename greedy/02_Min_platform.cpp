@@ -14,10 +14,10 @@ int countPlatforms(int n, int arr[], int dep[])
      sort(arr,arr+n); //n(log N)
     sort(dep,dep+n);
     int ans = 1; 
-    for (int i = 0; i <= n - 1; i++)
+    for (int i = 0; i <n; i++)
     {
         int count = 1; 
-        for (int j = i + 1; j <= n - 1; j++)
+        for (int j = i + 1; j <n; j++)
         {
             //Imp
             if ((arr[i] >= arr[j] && arr[i] <= dep[j]) ||

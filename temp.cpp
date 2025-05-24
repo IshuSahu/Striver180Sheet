@@ -1,52 +1,51 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 
 using namespace std;
-class Meeting {
-public:
-    int start;
-    int end;
-    int pos;
-
-    Meeting(int s, int e, int p) : start(s), end(e), pos(p) {}
+struct Item
+{
+    int value;
+    int weight;
 };
-static bool camparator(const Meeting &m1,const Meeting &m2){
-    if(m1.end<m2.end) return true;
-    else if(m2.end<m1.end) return false;
-    else if(m1.pos<m2.pos) return true;
-    return false;
-}
 
-vector<int> Nmeeting(int *start, int *end, int n){
-    vector<int > ans;
+class Solution
+{
+public:
     
-    vector<Meeting> meeting;
-    for (int i = 0; i < n; i++)
-    {
-        meeting.push_back(Meeting(start[i],end[i],i+1));
+    bool static comparator(Item item1, Item item2){
+        double val1 = double(item1.value/item1.weight);
+        double val2 = double(item2.value/item2.weight);
+        return val1<val2;
     }
-
-    sort(meeting.begin(),meeting.end(),camparator);
-    int Prev_End_time = meeting[0].end;
-    ans.push_back(meeting[0].pos);
-
-    for (int i = 1; i < n; i++)
+    double fractionalKnapsack(int capacity, Item *arr, int n)
     {
-        if(meeting[i].start>Prev_End_time){
-            ans.push_back(meeting[i].pos);
-            Prev_End_time = meeting[i].end;
+        double ans =0;
+        sort(arr, arr+n, comparator);
+        for (int i = 0; i < n; i++)
+        {
+            cout<<arr[i].value<<" "<<arr[i].weight<<endl;
         }
+        for (int i = 0; i < n; i++)
+        {
+            if(arr[i].weight<=capacity){
+                ans+=arr[i].value;
+                capacity -= arr[i].weight;
+            }
+            else{
+                ans+= double((arr[i].value/arr[i].weight)*capacity);
+                break;
+            }
+        }
+        
+        
+        return ans;
     }
-    return ans;
-}
-int main(){
-    int n = 6;
-    int start[] = {1, 3, 0, 5, 8, 5};
-    int end[] = {2, 4, 5, 7, 9, 9};
-    vector<int> arr = Nmeeting(start, end, n);
-    for (int i = 0; i < arr.size(); i++)
-    {
-        cout<<arr[i]<<" ";
-    }
-    
+};
+int main()
+{
+    int n = 4, weight = 50;
+    Item arr[n] = {{100, 20}, {60, 10}, {120, 30},{150,40}};
+    Solution obj;
+    double ans = obj.fractionalKnapsack(weight, arr, n);
+    cout << "The maximum value is " << setprecision(2) << fixed << ans;
     return 0;
 }

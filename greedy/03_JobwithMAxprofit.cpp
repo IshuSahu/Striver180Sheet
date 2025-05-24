@@ -38,7 +38,7 @@ public:
 
         for (int i = 0; i < n; i++)
         {
-            for (int j = arr[i].dead; j > 0; j--)
+            for (int j = arr[i].dead; j > 0; j--) // assignin to that deadline index
             {
                 if (slot[j] == -1)
                 {
