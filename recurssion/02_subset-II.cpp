@@ -1,5 +1,9 @@
 #include <bits/stdc++.h>
-
+/*
+roblem Statement: Given an array of integers that may contain duplicates the task is to return all possible subsets. Return only unique subsets and they can be in any order.
+Input: array[] = [1,2,2]
+Output: [ [ ],[1],[1,2],[1,2,2],[2],[2,2] ]
+*/
 using namespace std;
 void printAns(vector<vector<int>> &ans)
 {
@@ -28,7 +32,6 @@ public:
         fun(nums, index + 1, ds, res);
         ds.push_back(nums[index]);
         fun(nums, index + 1, ds, res);
-
     }
     vector<vector<int>> subsetsWithDup(vector<int> &nums)
     {

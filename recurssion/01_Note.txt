@@ -1,0 +1,73 @@
+What is the difference between recursion and iteration?
+Key Differences Between Recursion and Iteration? Recursion is a technique in which the function calls itself in its body to solve the problem, typically breaking into smaller and more manageable sub-problems. In contrast, Iteration is a technique that repetitively executes a code block until the condition is unmet
+
+Great questions! Let’s break this down step by step so you can deeply understand recursion, how to recognize when to use it, and how to approach recursion-based problems.
+
+---
+
+ 📌 What is Recursion?
+
+ Definition: Recursion is a technique where a function calls itself to solve a smaller version of the original problem, breaking it down into base cases and recursive cases.
+
+ Why use recursion?
+
+   When a problem can be divided into smaller, similar sub-problems.
+   Often used in problems involving trees, graphs, combinations, permutations, divide-and-conquer (e.g., quicksort, mergesort), etc.
+
+---
+
+Steps to Approach a Recursion Problem
+
+ 1️⃣ Understand the Problem Structure
+
+ Ask: Can the problem be broken down into smaller subproblems of the same type?
+ Look for repeated substructures (e.g., smaller versions of the original input).
+
+ 2️⃣ Identify the Base Case
+
+ The simplest input for which the solution is obvious and doesn’t require further recursion.
+ Examples:
+
+   Factorial: `factorial(0) = 1`
+   Fibonacci: `fib(0) = 0`, `fib(1) = 1`
+   Tree traversal: If `node == null`, return.
+
+ 3️⃣ Define the Recursive Case
+
+ How do you reduce the problem size and call the function again?
+ Combine solutions of smaller subproblems to form the final solution.
+
+ 4️⃣ Think about the Pattern
+
+ Common recursive patterns:
+
+   Decision Tree: Explore all possible choices (e.g., subsets, permutations, backtracking).
+   Divide-and-Conquer: Break problem into two or more subproblems (e.g., binary search, mergesort).
+   Tree/Graph Traversal: Visit nodes/edges recursively.
+
+ 5️⃣ Use Recursion When:
+
+ The problem is naturally hierarchical (e.g., tree).
+ Problem involves choices at each step (e.g., subsets, permutations).
+ Can divide the problem into smaller, similar problems.
+ You need to explore all possible combinations.
+
+ 6️⃣ Be Cautious!
+
+ Avoid infinite recursion by ensuring a base case is always reached.
+ Consider time and space complexity – recursion can cause exponential time or stack overflow if not controlled.
+ If overlapping subproblems occur (e.g., Fibonacci), consider memoization (dynamic programming).
+
+---
+
+ 📌 Recognizing Patterns Requiring Recursion
+
+| 🧠 Pattern                  | 🔍 Clues                                                      |
+| --------------------------- | ------------------------------------------------------------- |
+| Tree-like structure     | Data organized as nodes/children. (e.g., Tree traversal)      |
+| All combinations        | You need to try all possible subsets or arrangements.         |
+| Breaking problem down   | Can be reduced to smaller subproblems (e.g., divide array)    |
+| Choices at each step    | At each decision point, multiple options (e.g., backtracking) |
+| Graph exploration       | Need to traverse edges/nodes in a graph.                      |
+| Mathematical recurrence | Formula depends on previous terms (e.g., Fibonacci)           |
+
