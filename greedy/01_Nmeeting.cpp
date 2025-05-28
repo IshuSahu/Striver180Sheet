@@ -13,9 +13,9 @@ public:
 class Solution {
 public:
     static bool comparator(const Meeting &m1, const Meeting &m2) {
-        if (m1.end < m2.end) return true;
-        else if (m1.end > m2.end) return false;
-        else if (m1.pos < m2.pos) return true;
+        if (m1.end < m2.end) return true; //lesser than
+        else if (m1.end > m2.end) return false; // greater than 
+        else if (m1.pos < m2.pos) return true; // on equal of finshed time
         return false;
     }
 

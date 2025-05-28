@@ -1,51 +1,42 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-struct Item
-{
-    int value;
-    int weight;
-};
-
 class Solution
 {
 public:
-    
-    bool static comparator(Item item1, Item item2){
-        double val1 = double(item1.value/item1.weight);
-        double val2 = double(item2.value/item2.weight);
-        return val1<val2;
-    }
-    double fractionalKnapsack(int capacity, Item *arr, int n)
+    string getPermutation1(int n, int k)
     {
-        double ans =0;
-        sort(arr, arr+n, comparator);
-        for (int i = 0; i < n; i++)
+        int fact = 1;
+        vector<int> number;
+        k =k-1;
+        for (int i = 1; i < n; i++)
         {
-            cout<<arr[i].value<<" "<<arr[i].weight<<endl;
+            fact = fact * i;
+            number.push_back(i);
         }
-        for (int i = 0; i < n; i++)
+        number.push_back(n);
+        string ans= "";
+        while (true)
         {
-            if(arr[i].weight<=capacity){
-                ans+=arr[i].value;
-                capacity -= arr[i].weight;
-            }
-            else{
-                ans+= double((arr[i].value/arr[i].weight)*capacity);
+            ans  = ans +  to_string(number[k/fact]);
+            number.erase(number.begin()+ k/fact);
+            if(number.size()==0){
                 break;
             }
+
+            k = k%fact;
+            fact = fact/number.size();
         }
-        
-        
         return ans;
+        
     }
 };
 int main()
 {
-    int n = 4, weight = 50;
-    Item arr[n] = {{100, 20}, {60, 10}, {120, 30},{150,40}};
+    int n = 4, k = 17;
     Solution obj;
-    double ans = obj.fractionalKnapsack(weight, arr, n);
-    cout << "The maximum value is " << setprecision(2) << fixed << ans;
+    string ans = obj.getPermutation1(n, k);
+    cout << "The Kth permutation sequence is " << ans << endl;
+
     return 0;
 }
