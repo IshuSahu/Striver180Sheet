@@ -5,6 +5,8 @@ bool isSafe(int node, int color[], bool graph[101][101], int n, int col)
 {
     for (int k = 0; k < n; k++)
     {
+        //graph[k][node] == 1 → there is an edge between k and node
+        // color[k] == col -->assign color is Same
         if (k != node && graph[k][node] == 1 && color[k] == col)
         {
             return false;
@@ -14,7 +16,7 @@ bool isSafe(int node, int color[], bool graph[101][101], int n, int col)
 }
 bool solve(int node, int color[], int m, int N, bool graph[101][101])
 {
-    if (node == N)
+    if (node == N) // if you reach means all node successfully color
     {
         return true;
     }
@@ -62,6 +64,8 @@ int main()
     graph[0][3] = 1;
     graph[0][2] = 1;
     graph[2][0] = 1;
-
     cout << graphColoring(graph, m, N);
 }
+// Time Complexity: O( N^M) (n raised to m)
+
+// Space Complexity: O(N)
