@@ -67,3 +67,32 @@ int main()
     cout << "The answer is: " << ans << "\n";
     return 0;
 }
+
+/*
+Example:
+Books (pages): arr = {10, 20, 30, 40}
+Students: m = 2
+
+You have to split these books contiguously among 2 students.
+
+Option 1:
+Student 1: 10 + 20 + 30 = 60 pages
+
+Student 2: 40 pages
+Max pages any student gets: 60
+
+Option 2:
+Student 1: 10 + 20 = 30 pages
+
+Student 2: 30 + 40 = 70 pages
+Max pages any student gets: 70
+
+Option 3:
+Student 1: 10 pages
+
+Student 2: 20 + 30 + 40 = 90 pages
+Max pages any student gets: 90
+
+✅ Best Option:
+Option 1 is the best because the student with the most pages only has to read 60, which is the minimum possible maximum.
+*/
