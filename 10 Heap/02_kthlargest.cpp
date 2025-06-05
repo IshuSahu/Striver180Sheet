@@ -3,7 +3,11 @@ Example 1:
 Input: Array = [1,2,6,4,5,3] , K = 3 
 Output: kth largest element = 4, kth smallest element = 3
 */
-
+// the priority_queue is actually implemented using a heap internally.
+/*
+priority_queue<int> maxHeap; // Max-Heap (default)
+priority_queue<int, vector<int>, greater<int>> minHeap; // Min-Heap
+*/
 #include <bits/stdc++.h>
 using namespace std ;
 
@@ -28,6 +32,15 @@ public:
         }
 
         cout << "Kth Largest element " << pq.top() << "\n"  ;
+
+        //     for (int num : nums) {
+        //     minHeap.push(num);
+        //     if (minHeap.size() > k) {
+        //         minHeap.pop();  // Keep only k largest elements
+        //     }
+        // }
+
+        // return minHeap.top();
     }
 
     void kth_Smallest_MinHeap(vector<int>&arr, int k) {
