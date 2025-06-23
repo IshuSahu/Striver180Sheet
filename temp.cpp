@@ -1,23 +1,25 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 
 using namespace std;
-
-int findnonDuplicate(int *arr, int n)
-{
-    // PROBLEM HERE
-    int ans = 0;
-    for (int i = 0; i < n; i++)
+bool checkPallindrome(string str){
+    int left =0, right = str.length()-1;
+    while (left<=right)
     {
-        ans = ans ^ arr[i];
+        if(str[left++] != str[right--]){
+            return false;
+        }
     }
-    return ans;
+    return true;
+    
 }
-
-int main()
-{
-    int arr[] = {1, 1, 2, 2, 3, 3, 4, 5, 5};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    int res = findnonDuplicate(arr, n);
-    cout << res << endl;
+int main(){
+    string str ="JavaJ";
+    bool result = checkPallindrome(str);
+    if(result){
+        cout<<"Pallindrome";
+    }
+    else{
+        cout<<"Not Pallindrome";
+    }
     return 0;
 }

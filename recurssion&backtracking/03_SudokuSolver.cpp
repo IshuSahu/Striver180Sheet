@@ -8,7 +8,6 @@ bool isValid(vector<vector<char>> &board, int row, int col, char c)
 {
     for (int i = 0; i < 9; i++)
     {
-
         // checking in a row
         if (board[i][col] == c)
             return false;

@@ -45,7 +45,7 @@ int singleNonDuplicate2(vector<int> &arr)
         }
         // we are in the right:
         else
-        {
+        { 
             // eliminate the right half:
             high = mid - 1;
         }
