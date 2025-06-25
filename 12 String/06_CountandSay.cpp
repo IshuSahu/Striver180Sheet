@@ -30,7 +30,7 @@ string countAndSay(int n) {
 }
 
 int main() {
-    int n = 4;
+    int n = 5;
     cout << "Count and Say (" << n << "): " << countAndSay(n) << endl; // Output: "1211"
     return 0;
 }
