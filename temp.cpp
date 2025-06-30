@@ -1,25 +1,22 @@
-#include<bits/stdc++.h>
+vector<int> compute(string s) {
+    int n = s.length();
+    vector<int> result(n, 0);
+    int len = 0;
 
-using namespace std;
-bool checkPallindrome(string str){
-    int left =0, right = str.length()-1;
-    while (left<=right)
-    {
-        if(str[left++] != str[right--]){
-            return false;
+    for (int i = 1; i < n; ) {
+        if (s[i] == s[len]) {
+            len++;
+            result[i] = len;
+            i++;
+        } else {
+            if (len != 0) {
+                len = result[len - 1];  
+            } else {
+                result[i] = 0;
+                i++;
+            }
         }
     }
-    return true;
-    
-}
-int main(){
-    string str ="JavaJ";
-    bool result = checkPallindrome(str);
-    if(result){
-        cout<<"Pallindrome";
-    }
-    else{
-        cout<<"Not Pallindrome";
-    }
-    return 0;
+    cout<<endl;
+    return result;
 }
