@@ -38,19 +38,19 @@ int main()
     string a = "abcd";
     string b = "cdabcdab";
 
-    // cout << repeatedStringMatch(a, b) << endl;  // Output: 3
+    cout << repeatedStringMatch(a, b) << endl;  // Output: 3
 
     a = "abcabc";
     b = "cab";
 
-    if (a.find(b) != -1) // u can use -1; repeated.find(b) return index so WRONG! Only works if index != 0 but in this case substring can be strart from 0 too
-    {
-        cout << "Found!" << endl;
-    }
-    else
-    {
-        cout << "Not found!" << endl;
-    }
+    // if (a.find(b) != -1) // u can use -1; repeated.find(b) return index so WRONG! Only works if index != 0 but in this case substring can be strart from 0 too
+    // {
+    //     cout << "Found!" << endl;
+    // }
+    // else
+    // {
+    //     cout << "Not found!" << endl;
+    // }
 
     return 0;
 }
