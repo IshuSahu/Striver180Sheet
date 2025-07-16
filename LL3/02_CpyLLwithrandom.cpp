@@ -1,14 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Node
-{
+class Node {
 public:
     int data;
     Node *next;
     Node *random;
-    Node(int d)
-    {
+
+    Node(int d) {
         data = d;
         next = nullptr;
         random = nullptr;
@@ -29,7 +28,7 @@ Node *cloneLL(Node *head)
     while (temp != nullptr)
     {
         Node *copyNode = mpp[temp];
-        copyNode->next = mpp[temp->next];
+        copyNode->next = mpp[temp->next]; //mpp[temp]->next = mpp[temp->next];     // May assign nullptr if temp->next is nullptr
         copyNode->random = mpp[temp->random];
         temp = temp->next;
     }
@@ -37,33 +36,30 @@ Node *cloneLL(Node *head)
     return mpp[head];
 }
 
-int main()
-{
-    Node *head = new Node(7);
+int main() {
+    Node* head = new Node(7);
     head->next = new Node(14);
     head->next->next = new Node(21);
     head->next->next->next = new Node(28);
 
-    // Assigning random pointers
-    head->random = head->next->next;
-    head->next->random = head;
-    head->next->next->random = head->next->next->next;
-    head->next->next->next->random = head->next;
+    head->random = head->next->next;                  // 7 → 21
+    head->next->random = head;                        // 14 → 7
+    head->next->next->random = head->next->next->next; // 21 → 28
+    head->next->next->next->random = head->next;       // 28 → 14
 
-    Node *result = cloneLL(head);
+    Node* result = cloneLL(head);
 
-    Node *current = result;
-    while (current)
-    {
-        cout << current->data << " ";
+    Node* current = result;
+    cout << "Cloned list (data and random->data):\n";
+    while (current) {
+        cout << "Data: " << current->data
+             << ", Random: " << (current->random ? current->random->data : -1) << "\n";
         current = current->next;
     }
-    cout << endl;
 
     current = result;
-    while (current)
-    {
-        Node *temp = current;
+    while (current) {
+        Node* temp = current;
         current = current->next;
         delete temp;
     }
