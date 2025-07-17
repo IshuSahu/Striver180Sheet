@@ -25,7 +25,7 @@ public:
             {
                 path.push_back(s.substr(ind, i - ind + 1));
                 partitionHelper(i + 1, s, path, res);
-                path.pop_back(); // backtrack
+                path.pop_back();
             }
         }
     }

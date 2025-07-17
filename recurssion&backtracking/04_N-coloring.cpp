@@ -6,7 +6,7 @@ bool isSafe(int node, int color[], bool graph[101][101], int n, int col)
     for (int k = 0; k < n; k++)
     {
         //graph[k][node] == 1 → there is an edge between k and node
-        // color[k] == col -->assign color is Same
+        // color[k] == col --> assign color is Same
         if (k != node && graph[k][node] == 1 && color[k] == col)
         {
             return false;
@@ -14,9 +14,10 @@ bool isSafe(int node, int color[], bool graph[101][101], int n, int col)
     }
     return true;
 }
+
 bool solve(int node, int color[], int m, int N, bool graph[101][101])
 {
-    if (node == N) // if you reach means all node successfully color
+    if (node == N) 
     {
         return true;
     }
@@ -34,8 +35,6 @@ bool solve(int node, int color[], int m, int N, bool graph[101][101])
     return false;
 }
 
-// Function to determine if graph can be coloured with at most M colours such
-// that no two adjacent vertices of graph are coloured with same colour.
 bool graphColoring(bool graph[101][101], int m, int N)
 {
     int color[N] = {

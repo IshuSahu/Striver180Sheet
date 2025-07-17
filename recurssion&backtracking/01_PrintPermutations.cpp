@@ -62,7 +62,7 @@ class Solution
 private:
     void solve(string &s, int index, vector<string> &res)
     {
-        if (index == s.size())
+        if (index == s.length())
         {
             res.push_back(s);
             return;

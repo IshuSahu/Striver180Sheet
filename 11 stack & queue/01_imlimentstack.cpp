@@ -1,50 +1,33 @@
-#include <bits/stdc++.h>
-
+#include <iostream>
 using namespace std;
-class Stack
-{
-    int size;
-    int *arr;
-    int top;
 
+class Stack {
+    int arr[1000], top = -1;
 public:
-    Stack()
-    {
-        top = -1;
-        size = 1000;
-        arr = new int[size];
-    }
-    void push(int x)
-    {
-        top++;
-        arr[top] = x;
-    }
-    int pop()
-    {
-        int x = arr[top];
-        top--;
-        return x;
-    }
-    int Top()
-    {
-        return arr[top];
-    }
-    int Size()
-    {
-        return top + 1;
-    }
+    void push(int x) { arr[++top] = x; }
+    void pop() { if (top >= 0) top--; }
+    int peek() { return (top >= 0) ? arr[top] : -1; }
+    bool isEmpty() { return top == -1; }
 };
-int main()
-{
 
-    Stack s;
-    s.push(6);
-    s.push(3);
-    s.push(7);
-    cout << "Top of stack is before deleting any element " << s.Top() << endl;
-    cout << "Size of stack before deleting any element " << s.Size() << endl;
-    cout << "The element deleted is " << s.pop() << endl;
-    cout << "Size of stack after deleting an element " << s.Size() << endl;
-    cout << "Top of stack after deleting an element " << s.Top() << endl;
+int main() {
+    Stack st;
+
+    st.push(10);
+    st.push(20);
+    st.push(30);
+
+    cout << "Top element: " << st.peek() << endl;
+
+    st.pop();
+    cout << "After one pop, top element: " << st.peek() << endl;
+
+    st.pop();
+    st.pop();
+    if (st.isEmpty())
+        cout << "Stack is empty now." << endl;
+    else
+        cout << "Top element: " << st.peek() << endl;
+
     return 0;
 }

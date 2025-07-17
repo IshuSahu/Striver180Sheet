@@ -11,9 +11,8 @@ public:
     {
         q.push(x);
         int s = q.size();
-        for (int i = 0; i < s - 1; i++)
+        for (int i = 0; i < s - 1; i++) //otate the queue so that the newly pushed element comes to the front
         {
-
             q.push(q.front());
             q.pop();
         }

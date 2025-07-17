@@ -22,7 +22,7 @@ bool isValid(string s)
             char ch = st.top();
             st.pop(); // u need to be pop that ele
             /*else if it is nonempty then we will check if the topmost element of the stack is the opposite pair of the closing bracket or not.*/
-            if ((it == ')' and ch == '(') or (it == ']' and ch == '[') or (it == '}' and ch == '{'))
+            if ((it == ')' && ch == '(') or (it == ']' && ch == '[') or (it == '}' && ch == '{'))
                 continue;
             else
                 return false;

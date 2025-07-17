@@ -13,7 +13,6 @@ using namespace std;
 class Solution
 {
 public:
-    // function to generate all possible permutations of a string
     void permutationHelper(string &s, int index, vector<string> &res)
     {
         if (index == s.size())
@@ -40,21 +39,21 @@ public:
             s.push_back(i + '0');
         }
         permutationHelper(s, 0, res);
-        
+
         sort(res.begin(), res.end());
-        for (auto &permute: res)
+        for (auto &permute : res)
         {
-            for(char i: permute  ){
-                cout<<i<<" ";
+            for (char i : permute)
+            {
+                cout << i << " ";
             }
-            cout<<endl;
+            cout << endl;
         }
         // make k 0-based indexed to point to kth sequence
         auto it = res.begin() + (k - 1);
         return *it;
     }
 
-    // M-2
     string getPermutation1(int n, int k)
     {
         int fact = 1;
@@ -62,12 +61,10 @@ public:
         for (int i = 1; i < n; i++)
         {
             fact = fact * i;
-            // cout<<i<<",";
             numbers.push_back(i);
         }
-        // cout<<n<<endl;
-        numbers.push_back(n); // we require fact of (n-1);
-        
+        numbers.push_back(n);
+
         string ans = "";
         k = k - 1;
         while (true)
@@ -78,7 +75,6 @@ public:
             {
                 break;
             }
-
             k = k % fact;
             fact = fact / numbers.size();
         }

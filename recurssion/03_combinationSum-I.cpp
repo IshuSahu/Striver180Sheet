@@ -41,8 +41,8 @@ class Solution {
 };
 int main() {
   Solution obj;
-  vector < int > v {10,1,2,7,6,1,5};
-  int target = 8;
+  vector < int > v {2, 5, 2, 1, 2};
+  int target = 5;
 
   vector < vector < int >> ans = obj.combinationSum(v, target);
   cout << "Combinations are: " << endl;
