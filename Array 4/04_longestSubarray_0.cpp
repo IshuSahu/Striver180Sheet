@@ -15,6 +15,7 @@ int solve(vector<int> &a)
 
         if (sum == 0)
         {
+            // cout << sum << a[i] << endl;
             maxLen = i + 1;
         }
         else if (sumIndexMap.find(sum) != sumIndexMap.end())
@@ -32,7 +33,7 @@ int solve(vector<int> &a)
 
 int main()
 {
-    vector<int> a = {9, -3, 3, -1, 6, -5};
+    vector<int> a = {1, -1, 2, -2, 3};
     cout << solve(a) << endl;
 
     return 0;

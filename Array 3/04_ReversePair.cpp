@@ -1,10 +1,9 @@
 
 #include <bits/stdc++.h>
 using namespace std;
-
+// O(n*N)
 int countPairs(vector<int> &a, int n)
-{ // O(n*N)
-    // Count the number of pairs:
+{
     int cnt = 0;
     for (int i = 0; i < n; i++)
     {
@@ -17,7 +16,7 @@ int countPairs(vector<int> &a, int n)
     return cnt;
 }
 
-// We will e using merge sort
+// We will e using merge sort this will be done in (n*logn);
 void Merge(vector<int> &arr, int low, int mid, int high)
 {
     vector<int> temp;    // temporary array
@@ -61,6 +60,7 @@ void Merge(vector<int> &arr, int low, int mid, int high)
         arr[i] = temp[i - low];
     }
 }
+
 int countPair(vector<int> &arr, int low, int mid, int high)
 {
     int cnt = 0, right = mid + 1;
@@ -73,9 +73,12 @@ int countPair(vector<int> &arr, int low, int mid, int high)
             right++;
         }
         cnt = cnt + (right - (mid + 1));
+        cout<<cnt<<" ";
     }
+    cout<<endl;
     return cnt;
 }
+
 int mergeSort(vector<int> &arr, int low, int high)
 {
     int cnt = 0;
@@ -90,17 +93,17 @@ int mergeSort(vector<int> &arr, int low, int high)
     return cnt;
 }
 
-int team(vector<int> &skill, int n)
+int countPairs2(vector<int> &arr, int n)
 {
-    return mergeSort(skill, 0, n - 1);
+    return mergeSort(arr, 0, n - 1);
 }
 
 int main()
 {
-    vector<int> a = {1, 3, 2, 3, 1};
+    vector<int> a = {40,25,19,12,9,6,2};
     int n = a.size();
     // int cnt = countPairs(a, n);
-    int cnt = team(a, n);
+    int cnt = countPairs2(a, n);
     cout << "The number of reverse pair is: "
          << cnt << endl;
     return 0;

@@ -38,19 +38,21 @@ Explanation:
 //     return cnt;
 // }
 
-//O(N) or O(N*logN) 
-int subarraysWithXorK3(vector<int> a, int k) {
-    int n = a.size(); //size of the given array.
+// O(N) or O(N*logN)
+int subarraysWithXorK3(vector<int> a, int k)
+{
+    int n = a.size();
     int xr = 0;
-    map<int, int> mpp; //declaring the map.
-    mpp[xr]++; //setting the value of 0.
+    map<int, int> mpp;
+    mpp[xr]++;
     int cnt = 0;
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++)
+    {
         // prefix XOR till index i:
         xr = xr ^ a[i];
 
-        //By formula: x = xr^k:
+        // By formula: x = xr^k:
         int x = xr ^ k;
 
         // add the occurrence of xr^k
@@ -64,7 +66,6 @@ int subarraysWithXorK3(vector<int> a, int k) {
     return cnt;
 }
 
-
 int main()
 {
     vector<int> a = {4, 2, 2, 6, 4};
@@ -74,4 +75,3 @@ int main()
          << ans << "\n";
     return 0;
 }
-

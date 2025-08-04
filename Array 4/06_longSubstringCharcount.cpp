@@ -49,7 +49,7 @@ int solve2(string str)
         }
 
         st.insert(str[i]);
-        cout << i << " " << l <<" " <<i-l+1<<endl;
+        cout << i << " " << l << " " << i - l + 1 << endl;
         maxL = max(maxL, i - l + 1); // Correct calculation of maxL
     }
 
