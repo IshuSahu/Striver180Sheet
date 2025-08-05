@@ -1,36 +1,36 @@
-#include <bits/stdc++.h>
-
+#include <iostream>
+#include <string>
 using namespace std;
-vector<vector<int>> mergeOverlappingIntervals1(vector<vector<int>> arr)
-{
-    int n = arr.size();
-    vector<vector<int>> ans;
-    sort(arr.begin(), arr.end());
-    for (int i = 0; i < n; i++)
-    {
 
-        if (ans.empty() || arr[i][0] > ans.back()[1])
-        {
-            ans.push_back(arr[i]);
+string countAndSay(int n) {
+    if (n == 1) return "1";
+
+    string prev = "1";
+
+    for (int i = 2; i <= n; ++i) { 
+        string curr = "";
+        int count = 1;
+
+        for (int j = 1; j < prev.size(); ++j) {
+            if (prev[j] == prev[j - 1]) {
+                count++; // count repeating digits
+            } else {
+                curr += to_string(count) + prev[j - 1];
+                count = 1;
+            }
         }
-        else
-        {
-            ans.back()[1] = max(arr[i][1], ans.back()[1]);
-        }
+
+        // add the last group
+        curr += to_string(count) + prev.back();
+
+        prev = curr;
     }
-    return ans;
+
+    return prev;
 }
 
-int main()
-{
-    vector<vector<int>> arr = {{1, 3}, {2, 6}, {8, 10}, {11, 13}};
-    // vector<vector<int>> ans = mergeOverlappingIntervals(arr);
-    vector<vector<int>> ans = mergeOverlappingIntervals1(arr);
-    cout << "The merged intervals are: " << "\n";
-    for (auto it : ans)
-    {
-        cout << "[" << it[0] << ", " << it[1] << "] ";
-    }
-    cout << endl;
+int main() {
+    int n = 5;
+    cout << "Count and Say (" << n << "): " << countAndSay(n) << endl; // Output: "1211"
     return 0;
 }

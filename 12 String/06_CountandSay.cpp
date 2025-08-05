@@ -7,7 +7,7 @@ string countAndSay(int n) {
 
     string prev = "1";
 
-    for (int i = 2; i <= n; ++i) {
+    for (int i = 2; i <= n; ++i) { //as 1 is already handle so you to start from 2 
         string curr = "";
         int count = 1;
 
