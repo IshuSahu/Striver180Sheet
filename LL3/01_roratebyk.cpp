@@ -15,7 +15,6 @@ public:
 };
 
 // O(Number of Nodes present in the list*k)
-
 Node* roratedByK(Node* head, int k) {
     if(head == NULL||head->next == NULL) return head;
     for(int i=0;i<k;i++) {

@@ -5,7 +5,7 @@ bool isSafe(int node, int color[], bool graph[101][101], int n, int col)
 {
     for (int k = 0; k < n; k++)
     {
-        //graph[k][node] == 1 → there is an edge between k and node
+        // graph[k][node] == 1 → there is an edge between k and node
         // color[k] == col --> assign color is Same
         if (k != node && graph[k][node] == 1 && color[k] == col)
         {
@@ -17,7 +17,7 @@ bool isSafe(int node, int color[], bool graph[101][101], int n, int col)
 
 bool solve(int node, int color[], int m, int N, bool graph[101][101])
 {
-    if (node == N) 
+    if (node == N)
     {
         return true;
     }

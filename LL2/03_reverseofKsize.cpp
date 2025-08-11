@@ -14,7 +14,6 @@ public:
     }
 };
 
-// this wil reverse all the K even if it is also Perfectly kth
 Node *reverseLLKsize(Node *head1, int k)
 {
     Node *prev = nullptr;
@@ -60,9 +59,9 @@ Node *reverseList(Node *head)
     while (curr)
     {
         Node *temp = curr->next;
-        curr->next = prev; // here we change the direction
-        prev = curr;       // Move 'prev' to the current
-        curr = temp;       // Move 'curr' to the 'next element' node
+        curr->next = prev;
+        prev = curr;
+        curr = temp;
     }
     return prev;
 }
@@ -70,7 +69,6 @@ Node *reverseList(Node *head)
 Node *getKthNode(Node *temp, int k)
 {
     k -= 1;
-
     while (temp != NULL && k > 0)
     {
         k--;
@@ -89,13 +87,11 @@ Node *kReverse(Node *head, int k)
         Node *kThNode = getKthNode(temp, k);
         if (kThNode == NULL)
         {
-            // If there was a previous group, link the last node to the current node
             if (prevLast)
             {
                 prevLast->next = temp;
             }
 
-            // Exit the loop
             break;
         }
 
@@ -103,34 +99,24 @@ Node *kReverse(Node *head, int k)
 
         kThNode->next = NULL;
 
-        // Reverse the nodes from temp to the Kth node
         reverseList(temp);
-
-        // Adjust the head if the reversal starts from the head
+        // after reverse if this is first group we're reversing? assign head with kthNode as this will be our head else subsequent k-groups, we just connect the previous group's last node
         if (temp == head)
         {
             head = kThNode;
         }
         else
         {
-            // Link the last node of the previous group to the reversed group
             prevLast->next = kThNode;
         }
-
-        // Update the pointer to the last node of the previous group
         prevLast = temp;
-
-        // Move to the next group
         temp = nextNode;
     }
-
-    // Return the head of the modified linked list
     return head;
 }
 
 int main()
 {
-    // Create a sample linked list: 1 -> 2 -> 3 -> 4 -> 5
     Node *head = new Node(1);
     head->next = new Node(2);
     head->next->next = new Node(3);

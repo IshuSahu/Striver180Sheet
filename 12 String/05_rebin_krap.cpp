@@ -38,7 +38,7 @@ int main()
     string a = "abcd";
     string b = "cdabcdab";
 
-    cout << repeatedStringMatch(a, b) << endl;  // Output: 3
+    cout << repeatedStringMatch(a, b) << endl; // Output: 3
 
     a = "abcabc";
     b = "cab";

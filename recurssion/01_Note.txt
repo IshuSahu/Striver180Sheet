@@ -1,8 +1,6 @@
 What is the difference between recursion and iteration?
 Key Differences Between Recursion and Iteration? Recursion is a technique in which the function calls itself in its body to solve the problem, typically breaking into smaller and more manageable sub-problems. In contrast, Iteration is a technique that repetitively executes a code block until the condition is unmet
 
-Great questions! Let’s break this down step by step so you can deeply understand recursion, how to recognize when to use it, and how to approach recursion-based problems.
-
 ---
 
  📌 What is Recursion?
