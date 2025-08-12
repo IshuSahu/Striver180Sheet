@@ -14,6 +14,7 @@ int singleNonDuplicate(vector<int> &arr)
     }
     return ans;
 }
+
 int singleNonDuplicate2(vector<int> &arr)
 {
     int n = arr.size(); // size of the array.
@@ -45,7 +46,7 @@ int singleNonDuplicate2(vector<int> &arr)
         }
         // we are in the right:
         else
-        { 
+        {
             // eliminate the right half:
             high = mid - 1;
         }
@@ -54,6 +55,7 @@ int singleNonDuplicate2(vector<int> &arr)
     // dummy return statement:
     return -1;
 }
+
 int main()
 {
     vector<int> arr = {1, 1, 2, 2, 3, 3, 4, 5, 5, 6, 6};

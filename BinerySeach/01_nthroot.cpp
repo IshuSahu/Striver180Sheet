@@ -26,6 +26,7 @@ long long NthRoot(int n, int m)
         }
     }
 }
+
 int NthRootBS(int n, int m)
 {
     int low = 1;
@@ -50,6 +51,5 @@ int main()
     int n = 9, m = 1953125;
     int ans = NthRootBS(n, m);
     cout << "The answer is: " << ans << "\n";
-    return 0;
     return 0;
 }
