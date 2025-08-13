@@ -25,7 +25,7 @@ public:
 };
 int main()
 {
-    vector<int> g = {1, 2,7};    // child as per there Greed
+    vector<int> g = {1, 2, 7}; // child as per there Greed
     vector<int> s = {1, 2, 5}; // cookies as per size
     Solution so;
     cout << so.findContentChildren(g, s);
