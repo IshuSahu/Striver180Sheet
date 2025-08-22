@@ -24,7 +24,7 @@ void towerOfHanoi(int n, char A, char B, char C) {
 }
 
 int main() {
-    int n = 3;
+    int n = 4;
     towerOfHanoi(n, 'A', 'B', 'C');
     return 0;
 }

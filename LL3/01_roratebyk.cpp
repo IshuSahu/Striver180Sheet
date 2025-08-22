@@ -40,7 +40,8 @@ Node* rotateRight(Node* head,int k) {
     temp->next = head;
     k = k%length; //when k is more than length of list
     int end = length-k; //to get end of the list
-    while(end--) temp = temp->next;
+    while(end--) //If end > 0, loop continues.
+        temp = temp->next; //moving 
     //breaking last Node link and pointing to NULL
     head = temp->next;
     temp->next = NULL;
@@ -57,7 +58,7 @@ int main()
     head->next->next->next->next = new Node(5);
 
     // Node* reversedHead =reverseList(head);
-    Node *reversedHead = roratedByK(head,5);
+    Node *reversedHead = rotateRight(head,2);
 
     Node *current = reversedHead;
     while (current)
