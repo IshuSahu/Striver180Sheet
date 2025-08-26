@@ -57,3 +57,16 @@ int main()
     }
     return 0;
 }
+
+/*
+✅ Amortized Complexity
+Outer loop = 2n iterations → O(n).
+Stack operations = n pushes + n pops → O(n).
+
+So total = O(n), not O(n²).
+
+🔎 What is Amortized Complexity?
+
+Amortized complexity is a way of analyzing algorithms where an operation might sometimes be expensive (cost a lot of time), but when you look at a sequence of many operations, the average cost per operation stays small.
+*/
+

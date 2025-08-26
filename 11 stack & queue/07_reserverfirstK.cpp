@@ -18,7 +18,6 @@ queue<int> reverseFirstK(queue<int> q, int k) {
         q.push(q.front());
         q.pop();
     }
-
     return q;
 }
 

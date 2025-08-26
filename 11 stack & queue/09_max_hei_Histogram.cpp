@@ -19,9 +19,13 @@ public:
             {
                 NS[i] = st.top(); // Store the index of the next smaller element
             }
-           
+
             st.push(i);
         }
+        for(int i=0;i<n;i++){
+            cout<<NS[i]<<" ";
+        }
+        cout<<endl;
     }
 
     void prevSmaller(vector<int> &nums, vector<int> &PS)
@@ -36,17 +40,21 @@ public:
             }
             if (!st.empty())
             {
-                PS[i] = st.top(); 
+                PS[i] = st.top();
             }
             st.push(i);
         }
+        for(int i=0;i<n;i++){
+            cout<<PS[i]<<" ";
+        }
+        cout<<endl;
     }
 
     int largestRectangleArea(vector<int> &heights)
     {
         int maxA = 0;
         int n = heights.size();
-        vector<int> NS(n, n);  
+        vector<int> NS(n, n);
         vector<int> PS(n, -1);
 
         NextSmaller(heights, NS);
@@ -64,9 +72,8 @@ public:
 
 int main()
 {
-    vector<int> heights = {1,2,3,5,2,1};
+    vector<int> heights = {1, 2, 3, 5, 2, 1};
     Solution obj;
     cout << "The largest area in the histogram is  " << obj.largestRectangleArea(heights) << endl;
-
     return 0;
 }
