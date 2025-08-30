@@ -1,52 +1,38 @@
 #include <bits/stdc++.h>
-
 using namespace std;
-class Solution
+
+vector<int> findDuplicates(vector<int> &arr)
 {
-public:
-    void helper(vector<int> &nums, set<vector<int>> &res, vector<int> output, int ind)
-    {
-        if (ind >= nums.size())
-        {
-            sort(output.begin(), output.end());
-            res.insert(output);
-            return;
-        }
+    vector<int> ans;
+    int n = arr.size();
+    vector<int> hashArr(n + 1, 0);
 
-        // exclude
-        helper(nums, res, output, ind + 1);
-
-        // include
-        int element = nums[ind];
-        output.push_back(element);
-        helper(nums, res, output, ind + 1);
-    }
-    vector<vector<int>> subsetsWithDup(vector<int> &nums)
+    for (int i = 0; i < n; i++)
     {
-        vector<vector<int>> ans;
-        set<vector<int>> res;
-        vector<int> output;
-        helper(nums, res, output, 0);
-        for (auto it = res.begin(); it != res.end(); it++)
-        {
-            ans.push_back(*it);
-        }
-        return ans;
+        hashArr[arr[i]]++;
     }
-};
+
+    for (int i = 0; i <= n; i++)
+    {
+        if (hashArr[i] > 1)
+        {
+            // cout << hashArr[i] << endl;
+            for (int j = 1; j < hashArr[i]; j++)
+            {
+                ans.push_back(i);
+            }
+        }
+    }
+    return ans;
+}
+
 int main()
 {
-    Solution obj;
-    vector<int> nums = {1, 2, 2};
-    vector<vector<int>> ans = obj.subsetsWithDup(nums);
-    for (auto res : ans)
+    vector<int> arr = {3, 2, 3};
+    vector<int> res = findDuplicates(arr);
+    for (int i = 0; i < res.size(); i++)
     {
-        cout << "{";
-        for (auto val : res)
-        {
-            cout << val << " ";
-        }
-        cout << "}";
+        cout << res[i] << " ";
     }
     return 0;
 }
