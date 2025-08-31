@@ -1,38 +1,25 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
-vector<int> findDuplicates(vector<int> &arr)
+// Return the sum of distance between all
+// the pair of points.
+int distancesum(int x[], int y[], int n)
 {
-    vector<int> ans;
-    int n = arr.size();
-    vector<int> hashArr(n + 1, 0);
+    int sum = 0;
 
+    // for each point, finding distance to
+    // rest of the point
     for (int i = 0; i < n; i++)
-    {
-        hashArr[arr[i]]++;
-    }
-
-    for (int i = 0; i <= n; i++)
-    {
-        if (hashArr[i] > 1)
-        {
-            // cout << hashArr[i] << endl;
-            for (int j = 1; j < hashArr[i]; j++)
-            {
-                ans.push_back(i);
-            }
-        }
-    }
-    return ans;
+        for (int j = i + 1; j < n; j++)
+            sum += (abs(x[i] - x[j]) + abs(y[i] - y[j]));
+    return sum;
 }
 
 int main()
 {
-    vector<int> arr = {3, 2, 3};
-    vector<int> res = findDuplicates(arr);
-    for (int i = 0; i < res.size(); i++)
-    {
-        cout << res[i] << " ";
-    }
+    int x[] = { -1, 1, 3, 2 };
+    int y[] = { 5, 6, 5, 3 };
+    int n = sizeof(x) / sizeof(x[0]);
+    cout << distancesum(x, y, n) << endl;
     return 0;
 }
