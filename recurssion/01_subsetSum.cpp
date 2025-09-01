@@ -33,10 +33,25 @@ public:
         sort(ans.begin(), ans.end());
         return ans;
     }
+
+    int subarraySum(vector<int> &arr)
+    {
+        int sum = 0;
+        vector<int> ans;
+        int n = arr.size();
+        int ind = 0;
+        helper(arr, n, ans, ind, sum);
+        sum = 0;
+        for (int i = 0; i < ans.size(); i++)
+        {
+            sum += ans[i];
+        }
+        return sum;
+    }
 };
 int main()
 {
-    vector<int> arr{1,2,3};
+    vector<int> arr{1, 2, 3};
     Solution ob;
     vector<int> ans = ob.subsetSums(arr, arr.size());
     sort(ans.begin(), ans.end());
@@ -46,6 +61,8 @@ int main()
         cout << sum << " ";
     }
     cout << endl;
+    int res= ob.subarraySum(arr);
+    cout<<res<<endl;
 
     return 0;
 }

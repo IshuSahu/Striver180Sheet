@@ -1,25 +1,52 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <vector>
+
 using namespace std;
 
-// Return the sum of distance between all
-// the pair of points.
-int distancesum(int x[], int y[], int n)
+class Solution
 {
-    int sum = 0;
+public:
+    bool searchMatrix(vector<vector<int>> &matrix, int target)
+    {
+        int m = matrix.size();
+        int n = matrix[0].size();
+        int low = 0, high = (m * n) - 1;
 
-    // for each point, finding distance to
-    // rest of the point
-    for (int i = 0; i < n; i++)
-        for (int j = i + 1; j < n; j++)
-            sum += (abs(x[i] - x[j]) + abs(y[i] - y[j]));
-    return sum;
-}
+        while (low <= high)
+        {
+            int mid = low + (high - low) / 2;
+            int row = mid / n;
+            int col = mid % n;
+            cout<<row<<
+            if (matrix[row][col] == target)
+            {
+                return true;
+            }
+            else if (matrix[row][col] > target)
+            {
+                high = mid - 1;
+            }
+            else
+            {
+                low = mid + 1;
+            }
+        }
+
+        return false;
+    }
+};
 
 int main()
 {
-    int x[] = { -1, 1, 3, 2 };
-    int y[] = { 5, 6, 5, 3 };
-    int n = sizeof(x) / sizeof(x[0]);
-    cout << distancesum(x, y, n) << endl;
+    Solution solution;
+
+    vector<vector<int>> matrix1 = {
+        {1, 4},
+        {2, 5}};
+    int target1 = 2;
+
+    bool result1 = solution.searchMatrix(matrix1, target1);
+    cout << "Result for target " << target1 << " in matrix1: " << (result1 ? "Found" : "Not Found") << endl;
+
     return 0;
 }
