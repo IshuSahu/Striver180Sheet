@@ -1,0 +1,9 @@
+# Ignore compiled C++ executables
+*.out
+*.exe
+a.out       # Common default name for compiled executable on Linux/macOS
+*.o         # Object files
+*.obj       # Object files (for Windows)
+*.gch       # Precompiled header files
+*.pdb       # Debugging information (Windows)
+*.ilk       # Incremental linking (Windows)s
