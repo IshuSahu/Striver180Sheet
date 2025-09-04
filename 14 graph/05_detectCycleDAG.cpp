@@ -1,5 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
+/*
+-Compute In-degree of all vertices:
+-Initialize the Queue:
+-Process the Queue:
+-Check for Cycles:
+ */
 
 bool isCyclic(int V, vector<int> adj[])
 {
@@ -38,6 +44,7 @@ bool isCyclic(int V, vector<int> adj[])
         }
     }
 
+    // to you are not able produce tosort for the node n means there is a cycle
     if (cnt == V)
         return false;
     return true;

@@ -2,7 +2,8 @@
 
 ## 1. Definition
 
-A **Graph** is a **non-linear data structure** consisting of:
+A **graph** is a data structure that consists of a set of nodes (also called vertices) connected by edges.
+It is used to model relationships or connections between pairs of objects.
 
 - **Vertices (nodes):** Fundamental units that hold data (denoted as V).
 - **Edges (links):** Connections between pairs of vertices (denoted as E).
@@ -102,7 +103,7 @@ G = (V, E)
 
 ### 5.1. Depth First Search (DFS)
 
-- Explores as far as possible along each branch before backtracking.
+- Depth-First Search (DFS) is a graph/tree traversal algorithm that explores a path as deep as possible before backtracking
 - Uses **stack** (or recursion).
 - Time Complexity: **O(V + E)**
 
@@ -116,7 +117,7 @@ Applications:
 
 ### 5.2. Breadth First Search (BFS)
 
-- Explores neighbors level by level.
+- Breadth-First Search (BFS) is a graph/tree traversal algorithm that explores all the nodes at the current level before moving to the next level.
 - Uses **queue**.
 - Time Complexity: **O(V + E)**
 
@@ -188,3 +189,37 @@ Applications:
 - Traversal: BFS, DFS.
 - Algorithms: Dijkstra, Bellman-Ford, Floyd-Warshall, Prim, Kruskal, Topological Sort.
 - Applications: Social networks, Maps, Scheduling, Networks.
+
+
+| Feature                       | **Tree**                                                                           | **Graph**                                                          |
+| ----------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| **Definition**                | A hierarchical data structure with nodes connected in a parent-child relationship. | A general data structure consisting of nodes (vertices) and edges. |
+| **Connectivity**              | Always **connected** (all nodes are reachable).                                    | Can be **connected or disconnected**.                              |
+| **Cycles**                    | **No cycles** allowed (acyclic).                                                   | **May contain cycles**.                                            |
+| **Direction**                 | Typically a **directed** structure (from parent to child).                         | Can be **directed or undirected**.                                 |
+| **Edges**                     | If there are `n` nodes, there are exactly `n - 1` edges.                           | Can have any number of edges (≤ n(n-1)/2 for undirected).          |
+| **Parent-Child Relationship** | Every node (except root) has **exactly one parent**.                               | Nodes can have **multiple parents or none**.                       |
+| **Root Node**                 | Has a unique **root** node.                                                        | No concept of a root node in general.                              |
+| **Traversal Methods**         | BFS, DFS, Preorder, Inorder, Postorder.                                            | BFS and DFS (pre/in/post don’t apply generally).                   |
+| **Used in**                   | Hierarchical data (file systems, DOM, org charts).                                 | Networks, maps, web links, social graphs, etc.                     |
+
+
+### 📌 Summary:
+
+* **All trees are graphs**, but **not all graphs are trees**.
+* A **tree is a special kind of graph** that is:
+
+  * Connected,
+  * Acyclic,
+  * Has exactly `n-1` edges for `n` nodes.
+
+---
+
+### 🧠 Example Analogy:
+
+* **Tree**: Like a **family tree** — each person has one parent (except the root ancestor).
+* **Graph**: Like a **social network** — people can be connected in any way, cycles and multiple paths allowed.
+
+---
+
+Let me know if you’d like code comparisons or visual diagrams!

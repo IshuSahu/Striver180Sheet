@@ -1,3 +1,5 @@
+// This sort applicable on DAGs
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -57,6 +59,7 @@ public:
         // push nodes with indegree 0
         for (int i = 0; i < V; i++)
         {
+            cout << i << " -> " << indegree[i]<<endl;
             if (indegree[i] == 0)
             {
                 q.push(i);

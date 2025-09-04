@@ -1,45 +1,43 @@
 #include <iostream>
 #include <vector>
-#include <utility>
-
 using namespace std;
 
-bool isCrossing(pair<int, int> p1, pair<int, int> p2) {
-    return (p1.first < p2.first && p1.second > p2.second) || (p1.first > p2.first && p1.second < p2.second);
+// Function to add an edge from u to v
+void addEdge(vector<int> adj[], int u, int v) {
+    adj[u].push_back(v);
 }
 
-bool isValidHandshakeCombination(vector<pair<int, int>>& handshakes) {
-    for (int i = 0; i < handshakes.size(); i++) {
-        for (int j = i + 1; j < handshakes.size(); j++) {
-            if (isCrossing(handshakes[i], handshakes[j])) {
-                return false;
-            }
+// Function to calculate the in-degree of each vertex
+void calculateInDegree(vector<int> adj[], int V) {
+    vector<int> indegree(V, 0);  // Initialize in-degree of all vertices to 0
+
+    // Calculate in-degree for each node
+    for (int i = 0; i < V; i++) {
+        for (auto it : adj[i]) {
+            indegree[it]++;  // Increment in-degree of node 'it'
         }
     }
-    return true;
-}
 
-int bruteForceHandshake(int N) {
-    vector<pair<int, int>> allHandshakes;
-    return countValidHandshakes(allHandshakes);
-}
-
-int count(int N) {
-    vector<long long> dp(N / 2 + 1, 0);
-    dp[0] = 1;
-    
-    for (int i = 1; i <= N / 2; i++) {
-        for (int j = 0; j < i; j++) {
-            dp[i] += dp[j] * dp[i - j - 1];
-        }
+    // Output the in-degree of each node
+    for (int i = 0; i < V; i++) {
+        cout << "In-degree of node " << i << " is: " << indegree[i] << endl;
     }
-    
-    return dp[N / 2];
 }
 
 int main() {
-    int N;
-    cin >> N;
-    cout << count(N) << endl;
+    int V = 6;  // Number of vertices
+    vector<int> adj[V];  // Adjacency list to represent the graph
+
+    // Add edges to the graph (as given in the problem)
+    addEdge(adj, 5, 0);
+    addEdge(adj, 5, 2);
+    addEdge(adj, 4, 0);
+    addEdge(adj, 4, 1);
+    addEdge(adj, 2, 3);
+    addEdge(adj, 3, 1);
+
+    // Calculate and print in-degrees
+    calculateInDegree(adj, V);
+
     return 0;
 }
