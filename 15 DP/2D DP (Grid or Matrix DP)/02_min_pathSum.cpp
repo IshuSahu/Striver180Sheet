@@ -5,9 +5,11 @@
 
 using namespace std;
 
-class Solution {
+class Solution
+{
 public:
-    int minPath(int i, int j, int m, int n, vector<vector<int>>& grid, vector<vector<int>>& dp) {
+    int minPath(int i, int j, int m, int n, vector<vector<int>> &grid, vector<vector<int>> &dp)
+    {
         if (i == m - 1 && j == n - 1)
             return grid[i][j];
 
@@ -25,7 +27,8 @@ public:
         return dp[i][j];
     }
 
-    int minPathSum(vector<vector<int>>& grid) {
+    int minPathSum(vector<vector<int>> &grid)
+    {
         int m = grid.size();
         int n = grid[0].size();
 
@@ -33,14 +36,14 @@ public:
         return minPath(0, 0, m, n, grid, dp);
     }
 };
-int main() {
+int main()
+{
     Solution sol;
 
     vector<vector<int>> grid = {
         {1, 3, 1},
         {1, 5, 1},
-        {4, 2, 1}
-    };
+        {4, 2, 1}};
 
     cout << "Minimum path sum: " << sol.minPathSum(grid) << endl;
     return 0;

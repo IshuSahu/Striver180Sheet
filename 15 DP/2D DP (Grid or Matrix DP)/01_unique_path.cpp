@@ -31,7 +31,7 @@ public:
     }
     int uniquePaths(int m, int n)
     {
-        vector<vector<int>> dp(m + 1, vector<int>(n + 1, -1));
+        vector<vector<int>> dp(m, vector<int>(n, -1));
         /*
         [
           [-1, -1, -1, -1],  // row 0
@@ -51,6 +51,6 @@ public:
 int main()
 {
     Solution obj;
-    int totalCount = obj.uniquePaths(3, 4);
+    int totalCount = obj.uniquePaths(2, 2);
     cout << "The total number of Unique Paths are " << totalCount << endl;
 }
