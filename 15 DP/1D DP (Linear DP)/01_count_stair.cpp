@@ -23,7 +23,7 @@ int ways(int n, vector<int> &dp)
 int main()
 {
     int n = 3;
-    vector<int> dp(n + 1, -1); // n+1 why? You're computing ways(n), need dp[n]
+    vector<int> dp(n + 1, -1); // n+1 why? You're computing ways(n), need dp[n+1]
     cout << "Ways to climb " << n << " stairs: " << ways(n, dp) << endl;
     return 0;
 }

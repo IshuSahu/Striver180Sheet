@@ -1,43 +1,32 @@
 #include <iostream>
 #include <vector>
+
 using namespace std;
 
-// Function to add an edge from u to v
-void addEdge(vector<int> adj[], int u, int v) {
-    adj[u].push_back(v);
-}
+int Count(vector<int>& nums, int k) {
+    int count = 0;
+    int n = nums.size();
 
-// Function to calculate the in-degree of each vertex
-void calculateInDegree(vector<int> adj[], int V) {
-    vector<int> indegree(V, 0);  // Initialize in-degree of all vertices to 0
-
-    // Calculate in-degree for each node
-    for (int i = 0; i < V; i++) {
-        for (auto it : adj[i]) {
-            indegree[it]++;  // Increment in-degree of node 'it'
+    for (int i = 0; i < n; i++) {
+        int oddCount = 0;
+        
+        for (int j = i; j < n; j++) {
+            if (nums[j] % 2 != 0) {
+                oddCount++;
+            }
+            
+            if (oddCount == k) {
+                count++;
+            }
         }
     }
 
-    // Output the in-degree of each node
-    for (int i = 0; i < V; i++) {
-        cout << "In-degree of node " << i << " is: " << indegree[i] << endl;
-    }
+    return count;
 }
 
 int main() {
-    int V = 6;  // Number of vertices
-    vector<int> adj[V];  // Adjacency list to represent the graph
-
-    // Add edges to the graph (as given in the problem)
-    addEdge(adj, 5, 0);
-    addEdge(adj, 5, 2);
-    addEdge(adj, 4, 0);
-    addEdge(adj, 4, 1);
-    addEdge(adj, 2, 3);
-    addEdge(adj, 3, 1);
-
-    // Calculate and print in-degrees
-    calculateInDegree(adj, V);
-
+    vector<int> nums = {1, 1, 2, 1, 1};
+    int k = 3;
+    cout << "Number of nice subarrays: " << Count(nums, k) << endl;
     return 0;
 }
