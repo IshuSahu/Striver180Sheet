@@ -64,6 +64,7 @@ int maxSubarraySize2(vector<int> &arr, int k)
         return -1;
     return high;
 }
+
 /*
 We need the largest subarray length where every subarray sum ≤ k.
 If some subarray of length L has sum > k, then L is invalid.
@@ -79,18 +80,18 @@ int maxSubarraySize3(vector<int> &arr, int k) {
     int minLen = n + 1;
 
     while(end < n) {
-        sum += arr[end]; // expand window
+        sum += arr[end]; 
         end++;
 
         while(sum > k) {
             minLen = min(minLen, end - start);
-            sum -= arr[start]; // shrink window
+            sum -= arr[start]; 
             start++;
         }
     }
 
-    int ans = minLen - 1;  // largest length that is always valid
-    if(ans == 0) return -1; // if even size 1 fails
+    int ans = minLen - 1;  
+    if(ans == 0) return -1;
     return ans;
 }
 int main()

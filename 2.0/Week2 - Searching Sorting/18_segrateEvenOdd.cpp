@@ -1,43 +1,34 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
 using namespace std;
 
-class Solution
-{
+class Solution {
 public:
-    void segregateEvenOdd(vector<int> &arr)
-    {
-        sort(arr.begin(), arr.end());
-        int low = 0, high = arr.size() - 1;
-        while (low < high)
-        {
-            if (arr[low] % 2 != 0 && arr[high] % 2 == 0)
-            {
-                swap(arr[low], arr[high]);
-            }
-
-            if (arr[low] % 2 == 0)
-            {
-                low++;
-            }
-            if (arr[high] % 2 != 0)
-            {
-                high--;
+    void segregateEvenOdd(vector<int>& arr) {
+        int left = 0, right = arr.size() - 1;
+        
+        while (left <= right) {
+            if (arr[left] % 2 == 0) {
+                left++;
+            } else if (arr[right] % 2 != 0) {
+                right--;
+            } else {
+                swap(arr[left], arr[right]);
+                left++;
+                right--;
             }
         }
     }
 };
 
-int main()
-{
+int main() {
     Solution sol;
     vector<int> arr = {12, 34, 45, 9, 8, 90, 3};
     sol.segregateEvenOdd(arr);
-
-    for (int i : arr)
-    {
-        cout << i << " ";
+    
+    for (int num : arr) {
+        cout << num << " ";
     }
     cout << endl;
-
     return 0;
 }

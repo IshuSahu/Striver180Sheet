@@ -1,3 +1,8 @@
+/*
+Intuition we are taking Max distace which we can store the
+- then we chceking for each distact from 1 - maxpossible if all count place return true else return false
+*/
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -18,20 +23,44 @@ bool canWePlace(vector<int> &stalls, int dist, int cows)
     }
     return false;
 }
+// int aggressiveCows(vector<int> &stalls, int k)
+// {
+//     int n = stalls.size();
+//     sort(stalls.begin(), stalls.end());
+
+//     int limit = stalls[n - 1] - stalls[0];
+//     for (int i = 1; i <= limit; i++)
+//     {
+//         if (canWePlace(stalls, i, k) == false)
+//         {
+//             return (i - 1);
+//         }
+//     }
+//     return limit;
+// }
+
 int aggressiveCows(vector<int> &stalls, int k)
 {
     int n = stalls.size();
     sort(stalls.begin(), stalls.end());
 
-    int limit = stalls[n - 1] - stalls[0];
-    for (int i = 1; i <= limit; i++)
+    int left = 1, right = stalls[n - 1] - stalls[0];
+    int best = 0;
+
+    while (left <= right)
     {
-        if (canWePlace(stalls, i, k) == false)
+        int mid = left + (right - left) / 2;
+        if (canWePlace(stalls, mid, k))
         {
-            return (i - 1);
+            best = mid; // found a possible solution, try for a larger distance
+            left = mid + 1;
+        }
+        else
+        {
+            right = mid - 1; 
         }
     }
-    return limit;
+    return best;
 }
 
 int main()
