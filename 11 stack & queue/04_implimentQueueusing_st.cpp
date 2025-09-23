@@ -15,7 +15,7 @@ struct Queue
         }
         cout << "The element pushed is " << data << endl;
         input.push(data);
-        while (!output.empty()) //rotate the stact so that the newly pushed element comes top:
+        while (!output.empty())//rotate the stact so that the newly pushed element comes top:
         {
             input.push(output.top());
             output.pop();

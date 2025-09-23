@@ -70,7 +70,7 @@ public:
 
 
 int main() {
-    LRUCache lru(2);
+    BruteLRUCache lru(2);
     lru.put(1, 1);
     lru.put(2, 2);
     cout << lru.get(1) << endl; // 1

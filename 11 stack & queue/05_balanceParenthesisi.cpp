@@ -32,7 +32,7 @@ bool isValid(string s)
 }
 int main()
 {
-    string s = "()[{}{()]";
+    string s = "()[{}{()}]";
     if (isValid(s))
         cout << "True" << endl;
     else

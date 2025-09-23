@@ -14,7 +14,7 @@ queue<int> reverseFirstK(queue<int> q, int k) {
         q.push(val);
 
     int size = q.size() - temp.size();
-    while (size--) {
+    while (size--) { //rotating the indexes
         q.push(q.front());
         q.pop();
     }

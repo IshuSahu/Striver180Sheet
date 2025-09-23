@@ -22,10 +22,11 @@ public:
 
             st.push(i);
         }
-        for(int i=0;i<n;i++){
-            cout<<NS[i]<<" ";
+        for (int i = 0; i < n; i++)
+        {
+            cout << NS[i] << " ";
         }
-        cout<<endl;
+        cout << endl;
     }
 
     void prevSmaller(vector<int> &nums, vector<int> &PS)
@@ -44,10 +45,11 @@ public:
             }
             st.push(i);
         }
-        for(int i=0;i<n;i++){
-            cout<<PS[i]<<" ";
+        for (int i = 0; i < n; i++)
+        {
+            cout << PS[i] << " ";
         }
-        cout<<endl;
+        cout << endl;
     }
 
     int largestRectangleArea(vector<int> &heights)
@@ -63,6 +65,7 @@ public:
         for (int i = 0; i < n; i++)
         {
             int curMax = (NS[i] - PS[i] - 1) * heights[i];
+            // cout << NS[i] << " : " << PS[i] << "=> val: "<<curMax<<endl;
             maxA = max(maxA, curMax);
         }
 
@@ -72,7 +75,7 @@ public:
 
 int main()
 {
-    vector<int> heights = {1, 2, 3, 5, 2, 1};
+    vector<int> heights = {2, 1, 5, 6, 2, 3, 1};
     Solution obj;
     cout << "The largest area in the histogram is  " << obj.largestRectangleArea(heights) << endl;
     return 0;
