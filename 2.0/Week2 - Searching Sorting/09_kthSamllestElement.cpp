@@ -66,7 +66,6 @@ public:
 };
 int main()
 {
-
     vector<int> arr = {1, 2, 6, 4, 5, 3};
 
     Solution obj;

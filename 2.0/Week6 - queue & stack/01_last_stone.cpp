@@ -54,7 +54,10 @@ int lastStoneWeightOP(vector<int> &stones)
 
     return maxHeap.empty() ? 0 : maxHeap.top();
 }
-
+/*
+Time Complexity: O(n log n)
+Space Complexity: O(n)
+*/
 int main() {
     vector<int> stones = {2,7,4,1,8,1};
 

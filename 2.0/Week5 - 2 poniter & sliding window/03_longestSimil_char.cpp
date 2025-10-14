@@ -28,6 +28,13 @@ int characterReplacementBruteForce(string s, int k)
     return maxLen;
 }
 
+/*
+High-Level Idea:
+Use a sliding window to find the longest valid window where:
+
+Number of characters to change = Window length - frequency of most common character in the window
+If this number ≤ k, the window is valid.
+*/
 int characterReplacementOptimal(string s, int k)
 {
     vector<int> freq(26, 0);

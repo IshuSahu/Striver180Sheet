@@ -42,7 +42,7 @@ int helper(vector<int> &nums, int k)
         }
 
         cnt += i - left + 1;
-        cout << cnt<<endl;
+        // cout << cnt<<endl;
     }
 
     return cnt;

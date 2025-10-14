@@ -1,32 +1,34 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 
 using namespace std;
-
-int Count(vector<int>& nums, int k) {
-    int count = 0;
-    int n = nums.size();
-
-    for (int i = 0; i < n; i++) {
-        int oddCount = 0;
-        
-        for (int j = i; j < n; j++) {
-            if (nums[j] % 2 != 0) {
-                oddCount++;
-            }
-            
-            if (oddCount == k) {
-                count++;
-            }
-        }
+void helper(int ind, string s, string curr, vector<string> &ans)
+{
+    if (ind == s.length())
+    {
+        ans.push_back(curr);
+        return;
     }
-
-    return count;
+    // exclude
+    helper(ind + 1, s, curr, ans);
+    // include
+    helper(ind + 1, s, curr + s[ind], ans);
 }
-
-int main() {
-    vector<int> nums = {1, 1, 2, 1, 1};
-    int k = 3;
-    cout << "Number of nice subarrays: " << Count(nums, k) << endl;
+vector<string> power_set(string s)
+{
+    vector<string> ans;
+    string curr;
+    helper(0, s, curr, ans);
+    sort(ans.begin(), ans.end());
+    return ans;
+}
+int main()
+{
+    string s = "abc";
+    vector<string> subsets = power_set(s);
+    for (auto &subset : subsets)
+    {
+        cout << subset << " ";
+    }
+    cout << endl;
     return 0;
 }

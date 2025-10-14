@@ -15,7 +15,6 @@ If such a person exists, return their index; otherwise, return -1.
 #include <vector>
 using namespace std;
 
-
 // ✅ Brute-force approach
 int celebrityBruteForce(vector<vector<int>> &mat, int n)
 {
@@ -27,7 +26,7 @@ int celebrityBruteForce(vector<vector<int>> &mat, int n)
         {
             if (i == j)
                 continue;
-
+            cout << i << " " << j << endl;
             if (mat[i][j] == 1 || mat[j][i] == 0)
             {
                 isCelebrity = false;
@@ -54,7 +53,7 @@ int celebrityOptimal(vector<vector<int>> &mat, int n)
         else
             b--; // a doesn't know b => b can't be celebrity
     }
-
+    // This loop guarantees that after n-1 comparisons, we’ll be left with one potential candidate.
     int candidate = a;
 
     // Step 2: Verify candidate

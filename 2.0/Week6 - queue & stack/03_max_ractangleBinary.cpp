@@ -23,11 +23,17 @@ using namespace std;
 int largestRectangleArea(vector<int> &heights)
 {
     stack<int> st;
-    heights.push_back(0); // Sentinel
+    heights.push_back(0);
     int maxArea = 0;
 
     for (int i = 0; i < heights.size(); ++i)
     {
+        /*
+        When the current bar is shorter than the one on top of the stack:
+        Pop from the stack — you've found the right boundary of a rectangle.
+        The popped height is the rectangle's height.
+        The width is computed using the current index and the new top of stack (which is the left boundary).
+        */
         while (!st.empty() && heights[i] < heights[st.top()])
         {
             int h = heights[st.top()];
@@ -37,8 +43,7 @@ int largestRectangleArea(vector<int> &heights)
         }
         st.push(i);
     }
-
-    heights.pop_back(); // Remove sentinel
+    heights.pop_back();
     return maxArea;
 }
 
@@ -68,8 +73,12 @@ int maximalRectangle(vector<vector<int>> &matrix)
 
     return maxArea;
 }
-
-
+/*
+| Aspect    | Complexity |
+| --------- | ---------- |
+| **Time**  | O(n * m)   |
+| **Space** | O(m)       |
+*/
 int main()
 {
     int n, m;

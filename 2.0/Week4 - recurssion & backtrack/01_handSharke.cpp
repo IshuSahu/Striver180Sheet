@@ -72,9 +72,9 @@ int main()
     else
     {
         int k = N / 2;
-        long long result = catalan(k);
-        cout << "The number of ways to make non-crossing handshakes is: " << result << endl;
-        cout << "The number of ways to make non-crossing handshakes is: " << countHandshakes(N) << endl;
+        // long long result = catalan(k);
+        // cout << "The number of ways to make non-crossing handshakes is: " << result << endl;
+        // cout << "The number of ways to make non-crossing handshakes is: " << countHandshakes(N) << endl;
         cout << "The number of ways to make non-crossing handshakes is: " << count(N) << endl;
     }
 
