@@ -10,6 +10,12 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
+/*
+💡 How It Works:
+- Use a stack to remember nodes.
+- Push the root, process it immediately (save its value), then push right and left child.
+- We push right before left because stack is LIFO, and we want to visit left first.
+*/
 vector<int> preOrderTraversal(TreeNode* root) {
     vector<int> PreOrder;
     if (root == nullptr) return PreOrder;
@@ -28,6 +34,12 @@ vector<int> preOrderTraversal(TreeNode* root) {
     return PreOrder;
 }
 
+/*
+💡 How It Works:
+- Keep pushing all left children onto the stack.
+- Once there’s no more left, process the node (i.e., visit), then go to its right.
+- The stack helps us backtrack to the parent when left is done.
+*/
 vector<int> inOrderTraversal(TreeNode* root) {
     vector<int> InOrder;
     stack<TreeNode*> st;
@@ -48,14 +60,26 @@ vector<int> inOrderTraversal(TreeNode* root) {
 
     return InOrder;
 }
-
+/*
+💡 How It Works:
+- We keep track of whether the right child has been processed or not using a prev pointer.
+- Node is only processed when:
+    - There’s no right child or
+    - Right child is already processed.
+*/
 vector<int> postOrderTraversal(TreeNode* root) {
     vector<int> PostOrder;
     stack<TreeNode*> st;
     TreeNode* temp = nullptr;
     TreeNode* curr = root;
     TreeNode* prev = nullptr;
-
+/*
+        1
+       / \
+      2   3
+     / \ / \
+    4  5 6  7
+*/
     while (curr != nullptr || !st.empty()) {
         if (curr != nullptr) {
             st.push(curr);
