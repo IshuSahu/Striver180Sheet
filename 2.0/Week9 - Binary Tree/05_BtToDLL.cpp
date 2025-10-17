@@ -17,8 +17,8 @@ public:
 class Solution
 {
 public:
-    Node *prev = nullptr; // previously processed node
-    Node *head = nullptr; // head of DLL
+    Node *prev = nullptr;
+    Node *head = nullptr; 
 
     void inorder(Node *root)
     {

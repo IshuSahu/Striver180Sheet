@@ -10,9 +10,9 @@ struct TreeNode {
 };
 /*
 Use Divide and Conquer (recursion):
-The middle element of the array becomes the root.
-The left half becomes the left subtree.
-The right half becomes the right subtree.
+- The middle element of the array becomes the root.
+- The left half becomes the left subtree.
+- The right half becomes the right subtree.
 */
 TreeNode* buildBST(const vector<int>& nums, int left, int right) {
     if (left > right) return nullptr;

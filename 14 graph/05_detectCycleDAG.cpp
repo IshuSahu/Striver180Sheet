@@ -44,7 +44,7 @@ bool isCyclic(int V, vector<int> adj[])
         }
     }
 
-    // to you are not able produce tosort for the node n means there is a cycle
+    // if cnt==V: you are not able produce toposort for the node n means there is a cycle and its not a DAG 
     if (cnt == V)
         return false;
     return true;

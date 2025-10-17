@@ -1,34 +1,60 @@
 #include <bits/stdc++.h>
-
 using namespace std;
-void helper(int ind, string s, string curr, vector<string> &ans)
+
+class Solution
 {
-    if (ind == s.length())
+public:
+    vector<int> bfsOfGraph(int v, vector<int> adj[])
     {
-        ans.push_back(curr);
-        return;
+        int vis[v] = {0};
+        vis[0] = 1;
+        queue<int> q;
+        q.push(0);
+        vector<int> ans;
+        while (!q.empty())
+        {
+            int node = q.front();
+            q.pop();
+            ans.push_back(node);
+            for (auto it : adj[node])
+            {
+                if (!vis[it])
+                {
+                    vis[it] = 1;
+                    q.push(it);
+                }
+            }
+        }
+        return ans;
     }
-    // exclude
-    helper(ind + 1, s, curr, ans);
-    // include
-    helper(ind + 1, s, curr + s[ind], ans);
-}
-vector<string> power_set(string s)
+};
+
+void addEdge(vector<int> adj[], int u, int v)
 {
-    vector<string> ans;
-    string curr;
-    helper(0, s, curr, ans);
-    sort(ans.begin(), ans.end());
-    return ans;
+    adj[u].push_back(v);
+    adj[v].push_back(u);
 }
+
+void printAns(vector<int> &ans)
+{
+    for (int i = 0; i < ans.size(); i++)
+    {
+        cout << ans[i] << " ";
+    }
+}
+
 int main()
 {
-    string s = "abc";
-    vector<string> subsets = power_set(s);
-    for (auto &subset : subsets)
-    {
-        cout << subset << " ";
-    }
-    cout << endl;
+    vector<int> adj[6];
+
+    addEdge(adj, 0, 1);
+    addEdge(adj, 1, 2);
+    addEdge(adj, 1, 3);
+    addEdge(adj, 0, 4);
+
+    Solution obj;
+    vector<int> ans = obj.bfsOfGraph(5, adj);
+    printAns(ans);
+
     return 0;
 }

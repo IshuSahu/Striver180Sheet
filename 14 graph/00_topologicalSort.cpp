@@ -67,13 +67,13 @@ public:
         }
 
         vector<int> topo;
-
+        int cnt=0;
         while (!q.empty())
         {
             int node = q.front();
             q.pop();
             topo.push_back(node);
-
+            cnt++;
             // reduce indegree of neighbors
             for (auto it : adj[node])
             {
@@ -84,7 +84,7 @@ public:
                 }
             }
         }
-
+        cout<<"cnt: V"<<cnt<<V<<endl;
         return topo;
     }
 };
