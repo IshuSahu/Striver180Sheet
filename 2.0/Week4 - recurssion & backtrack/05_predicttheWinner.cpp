@@ -13,7 +13,7 @@ using namespace std;
 
 //         int pickLeft = nums[left] - helper(nums, left + 1, right, DP);
 //         int pickRight = nums[right] - helper(nums, left, right - 1, DP);
-
+    
 //         DP[left][right] = max(pickLeft, pickRight);
 //         return DP[left][right];
 //     }
