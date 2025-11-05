@@ -50,7 +50,10 @@ public:
         return dp[m - 1][n - 1];
     }
 };
-
+/*
+TC = O(m × n)
+SC = O(m × n)  dp table of size m x n 
+*/
 int main()
 {
     Solution sol;

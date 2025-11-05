@@ -27,7 +27,7 @@ bool isValid(int x, int y, int n)
 }
 
 // BFS Approch
-int minKnightMoves(int n, int x1, int y1, int x2, int y2)
+int minKnightMovesBFS(int n, int x1, int y1, int x2, int y2)
 {
     vector<vector<bool>> visited(n, vector<bool>(n, false));
     queue<pair<pair<int, int>, int>> q; // ((x, y), steps)
@@ -62,6 +62,10 @@ int minKnightMoves(int n, int x1, int y1, int x2, int y2)
 
     return -1; 
 }
+/*
+TC = O(n^2) Each cell is visited at most once → O(n^2), For each cell, we check 8 directions → O(8 * n^2) = O(n^2)
+SC = O(n^2) visited matrix → O(n^2)
+*/
 
 // DP approch
 unordered_map<string, int> memo;
@@ -72,7 +76,7 @@ int minKnightMoves(int x, int y)
     y = abs(y);
     string key = to_string(x) + "," + to_string(y);
 
-    // Check memo
+     // check if result is already computed. eg: Check memo["2,1"] = 1;
     if (memo.count(key))
         return memo[key];
 
@@ -90,13 +94,18 @@ int minKnightMoves(int x, int y)
     memo[key] = res;
     return res;
 }
+/*
+TC = O(x*y) Each unique (x,y) pair is computed once
+SC = O(x*y) Memoization storage → O(x*y) in worst case
+*/
+
 int main()
 {
     int n = 8;
     int startX = 0, startY = 0;
     int targetX = 7, targetY = 7;
 
-    cout << "Minimum knight moves: " << minKnightMoves(n, startX, startY, targetX, targetY) << endl;
+    // cout << "Minimum knight moves : " << minKnightMovesBFS(n, startX, startY, targetX, targetY) << endl;
 
     cout << "Moves to reach (5, 5): " << minKnightMoves(5, 5) << endl;
     cout << "Moves to reach (2, 1): " << minKnightMoves(2, 1) << endl;

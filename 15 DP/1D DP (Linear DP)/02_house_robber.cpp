@@ -23,6 +23,10 @@ int rob(vector<int>& nums) {
     vector<int> dp(n, -1);
     return robFrom(0, nums, dp);
 }
+/*
+TC: O(n) → Each index i is computed once and stored in dp, making the total work linear.
+SC: O(n) → For the dp array (recursion stack is also O(n) in worst case).
+*/
 
 int main() {
     vector<int> nums = {2, 7, 9, 3, 1};

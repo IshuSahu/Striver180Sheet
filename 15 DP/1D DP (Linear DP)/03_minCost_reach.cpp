@@ -3,7 +3,12 @@
 #include <algorithm>
 
 using namespace std;
-
+/*
+Problem Statement (short version):
+- You are given an array cost[] where cost[i] is the cost of step i.
+- You can start from step 0 or 1, and each time you can climb 1 or 2 steps.
+- Find the minimum cost to reach the top of the staircase.
+*/
 int minCostClimbingStairs(vector<int> &cost)
 {
     int n = cost.size();
