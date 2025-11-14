@@ -32,7 +32,7 @@ public:
             if (curWeight + arr[i].weight <= W)
             {
                 curWeight += arr[i].weight;
-                finalvalue += arr[i].value;
+                finalvalue += arr[i].value; 
             }
             else
             {

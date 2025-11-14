@@ -57,8 +57,8 @@ int main()
     head->next->next->next = new Node(4);
     head->next->next->next->next = new Node(5);
 
-    // Node* reversedHead =reverseList(head);
-    Node *reversedHead = rotateRight(head,2);
+    Node* reversedHead =roratedByK(head,2);
+    // Node *reversedHead = rotateRight(head,2);
 
     Node *current = reversedHead;
     while (current)

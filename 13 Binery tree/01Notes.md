@@ -42,3 +42,5 @@ A **B+ Tree** is a variation of the B-tree where all values are stored in the le
 
 - **Databases**: B-trees are commonly used in databases (e.g., MySQL, PostgreSQL) for indexing.
 - **File Systems**: File systems like NTFS and HFS use B-trees to organize files and directories efficiently.
+
+

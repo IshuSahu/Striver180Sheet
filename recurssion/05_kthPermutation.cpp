@@ -13,6 +13,10 @@ using namespace std;
 class Solution
 {
 public:
+    /*
+    TC: O(n! * log(n!)) due to generating n! permutations and sorting them.
+    SC: O(n! + n) due to storing n! permutations and recursion stack depth.
+    */
     void permutationHelper(string &s, int index, vector<string> &res)
     {
         if (index == s.size())
@@ -77,6 +81,7 @@ public:
             }
             k = k % fact;
             fact = fact / numbers.size();
+            // cout<<"Fact"<<fact<<endl;
         }
         return ans;
     }

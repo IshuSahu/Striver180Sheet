@@ -98,7 +98,7 @@ int findKthElement(vector<int> &a, vector<int> &b, int k)
         else if (l1 > r2)
         {
             high = cut1 - 1;
-        }
+        }i
         else
         {
             low = cut1 + 1;

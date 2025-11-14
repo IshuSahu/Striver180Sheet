@@ -299,34 +299,366 @@ priority_queue<pair<int,int>, vector<pair<int,int>>, Compare> pq;
 ```
 
 ---
-
-## 🔹 12. Internal Working (for Interview)
-
-* Heaps are implemented using **arrays**.
-* `push()` → inserts element at the end → performs **heapify up** (log N).
-* `pop()` → swaps root with last → deletes → performs **heapify down** (log N).
-* In STL, `priority_queue` internally uses `std::make_heap`, `std::push_heap`, and `std::pop_heap`.
+# ⚙️ HEAP (Priority Queue) — Pattern Wise Mastery Guide
 
 ---
 
-## 🔹 13. Time Complexities Summary
+## 🚀 1️⃣ What Is a Heap?
 
-| Operation       | Average  | Worst    | Notes |
-| --------------- | -------- | -------- | ----- |
-| Insert          | O(log N) | O(log N) |       |
-| Extract Max/Min | O(log N) | O(log N) |       |
-| Peek (Top)      | O(1)     | O(1)     |       |
-| Build Heap      | O(N)     | O(N)     |       |
+**Definition:**
+A **Heap** is a **complete binary tree** where:
+
+* In a **Min-Heap**, each parent ≤ its children
+* In a **Max-Heap**, each parent ≥ its children
+
+It’s efficiently implemented using an **array**, and allows:
+
+* Insert: `O(log n)`
+* Delete top (min/max): `O(log n)`
+* Access top: `O(1)`
+
+**C++ STL:**
+
+```cpp
+priority_queue<int> maxHeap; // default max-heap
+priority_queue<int, vector<int>, greater<int>> minHeap; // min-heap
+```
 
 ---
 
-## 🔹 14. Key Interview Notes
+## 🧠 2️⃣ Why Use a Heap?
 
-1. **Heap is not sorted**, only the root satisfies order property.
-2. **Heaps vs BST**:
+| Use Case                      | Example                           |
+| ----------------------------- | --------------------------------- |
+| Find Kth largest/smallest     | Top K problems                    |
+| Efficiently merge sorted data | Merge K sorted lists              |
+| Scheduling / median stream    | Median of stream, Meeting rooms   |
+| Frequency-based tasks         | Reorganize string, Task scheduler |
+| Graph algorithms              | Dijkstra’s shortest path          |
 
-   * BST can give sorted order traversal → `O(N)`
-   * Heap gives **top element quickly**, not sorted order.
-3. **STL Tip:** For large datasets or when sorting is not needed, heaps are faster than sorting for top-k problems.
+---
+
+## 📚 3️⃣ Core Heap Operations
+
+| Operation | Complexity | Description        |
+| --------- | ---------- | ------------------ |
+| push()    | O(log n)   | Insert element     |
+| pop()     | O(log n)   | Remove top element |
+| top()     | O(1)       | Get top element    |
+| size()    | O(1)       | Number of elements |
+
+---
+
+## 🧩 4️⃣ Heap Patterns Overview
+
+| # | Pattern Name                   | Use Case                     |
+| - | ------------------------------ | ---------------------------- |
+| 1 | Kth Largest / Smallest Element | Rank-based problems          |
+| 2 | Top K Frequent Elements        | Frequency counting           |
+| 3 | Merge K Sorted Lists / Arrays  | Multi-list merging           |
+| 4 | Sliding Window                 | Maintain max/min over window |
+| 5 | Heap + Greedy (Scheduling)     | Job/task allocation          |
+| 6 | Heap + Two Heaps (Median)      | Stream median problems       |
+| 7 | Custom Comparator Heaps        | Complex sorting logic        |
+
+---
+
+## 🧩 5️⃣ Pattern-Wise Deep Dive
+
+---
+
+### 🧩 **Pattern 1: Kth Largest / Smallest Element**
+
+**When to use:**
+Find the Kth smallest/largest number efficiently (better than sorting).
+
+**Approach:**
+
+* **Kth largest** → use *min-heap* of size K
+* **Kth smallest** → use *max-heap* of size K
+
+**Steps:**
+
+1. Traverse array
+2. Push element to heap
+3. If heap size > K → pop()
+4. Final heap top = answer
+
+**Example:**
+
+```cpp
+int findKthLargest(vector<int>& nums, int k) {
+    priority_queue<int, vector<int>, greater<int>> minHeap;
+    for (int n : nums) {
+        minHeap.push(n);
+        if (minHeap.size() > k) minHeap.pop();
+    }
+    return minHeap.top();
+}
+```
+
+✅ Example: `[3,2,1,5,6,4], k=2 → 5`
+
+**Practice Problems:**
+
+* [Leetcode 215. Kth Largest Element in Array](https://leetcode.com/problems/kth-largest-element-in-an-array/)
+* [Kth Smallest Element (GFG)](https://www.geeksforgeeks.org/kth-smallestlargest-element-unsorted-array/)
+* [Find Median from Data Stream](https://leetcode.com/problems/find-median-from-data-stream/)
+
+---
+
+### 🧩 **Pattern 2: Top K Frequent Elements**
+
+**When to use:**
+You need to find the K most (or least) frequent items.
+
+**Approach:**
+
+* Use hash map to count frequencies
+* Use **min-heap** of size K
+* Push pairs (freq, element), pop smallest when > K
+
+**Example:**
+
+```cpp
+vector<int> topKFrequent(vector<int>& nums, int k) {
+    unordered_map<int, int> freq;
+    for (int n : nums) freq[n]++;
+    
+    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> minHeap;
+    for (auto& [num, count] : freq) {
+        minHeap.push({count, num});
+        if (minHeap.size() > k) minHeap.pop();
+    }
+
+    vector<int> ans;
+    while (!minHeap.empty()) {
+        ans.push_back(minHeap.top().second);
+        minHeap.pop();
+    }
+    return ans;
+}
+```
+
+✅ Example: `[1,1,1,2,2,3], k=2 → [1,2]`
+
+**Practice Problems:**
+
+* [Leetcode 347. Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/)
+* [Leetcode 692. Top K Frequent Words](https://leetcode.com/problems/top-k-frequent-words/)
+
+---
+
+### 🧩 **Pattern 3: Merge K Sorted Lists**
+
+**When to use:**
+You have multiple sorted arrays/lists — merge into one sorted output efficiently.
+
+**Approach:**
+
+* Use a **min-heap** to store the smallest current element from each list
+* Pop top, push next from same list
+
+**Example:**
+
+```cpp
+ListNode* mergeKLists(vector<ListNode*>& lists) {
+    auto cmp = [](ListNode* a, ListNode* b){ return a->val > b->val; };
+    priority_queue<ListNode*, vector<ListNode*>, decltype(cmp)> pq(cmp);
+    for (auto node : lists) if (node) pq.push(node);
+
+    ListNode dummy(0), *tail = &dummy;
+    while (!pq.empty()) {
+        auto node = pq.top(); pq.pop();
+        tail->next = node; tail = tail->next;
+        if (node->next) pq.push(node->next);
+    }
+    return dummy.next;
+}
+```
+
+✅ Time: `O(N log k)`, N = total elements
+
+**Practice Problems:**
+
+* [Leetcode 23. Merge K Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/)
+* [Merge K Sorted Arrays (GFG)](https://www.geeksforgeeks.org/merge-k-sorted-arrays/)
+
+---
+
+### 🧩 **Pattern 4: Sliding Window with Heap**
+
+**When to use:**
+Need the max/min element within every subarray (window) of size K.
+
+**Approach:**
+
+* Use a **max-heap** storing `{value, index}`
+* For each element:
+
+  * Push (val, index)
+  * Pop until top is within window range
+  * Top gives current max
+
+**Example:**
+
+```cpp
+vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+    priority_queue<pair<int,int>> pq;
+    vector<int> res;
+    for (int i = 0; i < nums.size(); i++) {
+        pq.push({nums[i], i});
+        while (pq.top().second <= i - k) pq.pop();
+        if (i >= k - 1) res.push_back(pq.top().first);
+    }
+    return res;
+}
+```
+
+✅ Example: `[1,3,-1,-3,5,3,6,7], k=3 → [3,3,5,5,6,7]`
+
+**Practice Problems:**
+
+* [Leetcode 239. Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/)
+* [Leetcode 480. Sliding Window Median](https://leetcode.com/problems/sliding-window-median/)
+
+---
+
+### 🧩 **Pattern 5: Heap + Greedy (Scheduling / Allocation)**
+
+**When to use:**
+You need to pick or schedule jobs efficiently based on deadlines or durations.
+
+**Approach:**
+
+* Sort by one parameter (e.g. deadline/start time)
+* Use a **min-heap** or **max-heap** to manage active tasks
+
+**Example:**
+**Meeting Rooms II**
+
+```cpp
+int minMeetingRooms(vector<vector<int>>& intervals) {
+    sort(intervals.begin(), intervals.end());
+    priority_queue<int, vector<int>, greater<int>> minHeap;
+    
+    for (auto& meeting : intervals) {
+        if (!minHeap.empty() && minHeap.top() <= meeting[0])
+            minHeap.pop();
+        minHeap.push(meeting[1]);
+    }
+    return minHeap.size();
+}
+```
+
+✅ Example: `[[0,30],[5,10],[15,20]] → 2`
+
+**Practice Problems:**
+
+* [Leetcode 253. Meeting Rooms II](https://leetcode.com/problems/meeting-rooms-ii/)
+* [Leetcode 621. Task Scheduler](https://leetcode.com/problems/task-scheduler/)
+* [IPO Problem (Leetcode 502)](https://leetcode.com/problems/ipo/)
+
+---
+
+### 🧩 **Pattern 6: Two Heaps (Median of Stream)**
+
+**When to use:**
+Maintain dynamic median in a stream of numbers.
+
+**Approach:**
+
+* Use two heaps:
+
+  * **Max-heap** for left half
+  * **Min-heap** for right half
+* Balance sizes so difference ≤ 1
+
+**Example:**
+
+```cpp
+class MedianFinder {
+    priority_queue<int> left; // max-heap
+    priority_queue<int, vector<int>, greater<int>> right; // min-heap
+
+public:
+    void addNum(int num) {
+        left.push(num);
+        right.push(left.top());
+        left.pop();
+        if (right.size() > left.size()) {
+            left.push(right.top());
+            right.pop();
+        }
+    }
+
+    double findMedian() {
+        if (left.size() == right.size())
+            return (left.top() + right.top()) / 2.0;
+        return left.top();
+    }
+};
+```
+
+✅ **Time:** `O(log n)` per insertion
+
+**Practice Problems:**
+
+* [Leetcode 295. Find Median from Data Stream](https://leetcode.com/problems/find-median-from-data-stream/)
+* [Sliding Window Median (LC 480)](https://leetcode.com/problems/sliding-window-median/)
+
+---
+
+### 🧩 **Pattern 7: Custom Comparator Heap**
+
+**When to use:**
+When comparison is **not numeric**, e.g., sort by frequency, string length, distance.
+
+**Example:**
+K Closest Points to Origin
+
+```cpp
+vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
+    auto cmp = [](auto& a, auto& b) {
+        return (a[0]*a[0] + a[1]*a[1]) < (b[0]*b[0] + b[1]*b[1]);
+    };
+    priority_queue<vector<int>, vector<vector<int>>, decltype(cmp)> pq(cmp);
+    for (auto& p : points) {
+        pq.push(p);
+        if (pq.size() > k) pq.pop();
+    }
+    vector<vector<int>> ans;
+    while (!pq.empty()) { ans.push_back(pq.top()); pq.pop(); }
+    return ans;
+}
+```
+
+✅ Example: `[[3,3],[5,-1],[-2,4]], k=2 → [[3,3],[-2,4]]`
+
+**Practice Problems:**
+
+* [Leetcode 973. K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/)
+* [Leetcode 451. Sort Characters by Frequency](https://leetcode.com/problems/sort-characters-by-frequency/)
+
+---
+
+## 🧭 6️⃣ Heap Pattern Summary Table
+
+| Pattern           | Heap Type    | Common Use             |
+| ----------------- | ------------ | ---------------------- |
+| Kth Element       | Min/Max Heap | Rank queries           |
+| Top K Frequent    | Min Heap     | Frequency              |
+| Merge K Lists     | Min Heap     | Merging streams        |
+| Sliding Window    | Max Heap     | Dynamic window stats   |
+| Scheduling        | Min Heap     | Allocations            |
+| Two Heaps         | Both         | Medians                |
+| Custom Comparator | Custom       | Distance/Score sorting |
+
+---
+
+## 🧠 Key Insight:
+
+> Heap ≠ just for sorting.
+> It’s for *“always keep track of top K or minimum-cost subset dynamically.”*
 
 ---

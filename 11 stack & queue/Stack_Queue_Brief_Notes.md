@@ -126,18 +126,423 @@ public:
 
 ---
 
-## 🧠 Patterns to Know
-
-- **Backtracking = Stack**
-- **BFS = Queue**
-- **Next Greater/Smaller = Stack (Reverse Thinking)**
+# 🧱 Stack & Queue — Pattern Wise Mastery Guide
 
 ---
 
-## ✅ Summary
+## 🚀 1️⃣ What Are Stack & Queue?
 
-- Understand operations + their time complexity.
-- Prefer STL unless building low-level system.
-- Practice 10–15 classic problems to master these.
+| Data Structure | Definition                | Nature      | Common Operations                 |
+| -------------- | ------------------------- | ----------- | --------------------------------- |
+| **Stack**      | LIFO (Last In First Out)  | Top-based   | `push`, `pop`, `top`, `isEmpty`   |
+| **Queue**      | FIFO (First In First Out) | Front-based | `push`, `pop`, `front`, `isEmpty` |
 
-Happy Coding!
+---
+
+## ⚙️ 2️⃣ Why Are They Important?
+
+Both structures **maintain order** and **control flow** — widely used in:
+
+* Expression evaluation
+* Recursion & backtracking
+* Sliding window problems
+* Tree/graph traversal
+* Monotonic patterns (Next Greater Element, Stock Span)
+* Scheduling (Round robin, BFS)
+
+---
+
+## 🧩 3️⃣ Stack & Queue Pattern Overview
+
+| #  | Pattern Name                              | Applies To   | Core Idea                             |
+| -- | ----------------------------------------- | ------------ | ------------------------------------- |
+| 1  | Monotonic Stack                           | Stack        | Maintain increasing/decreasing order  |
+| 2  | Next Greater / Smaller Element            | Stack        | Find nearest greater/smaller in array |
+| 3  | Stock Span & Histogram                    | Stack        | Range calculation problems            |
+| 4  | Valid Parentheses & Expression Evaluation | Stack        | Matching, evaluating expressions      |
+| 5  | Min Stack / Max Stack                     | Stack        | Track min/max dynamically             |
+| 6  | Queue via Stack / Stack via Queue         | Both         | Implementation logic                  |
+| 7  | Sliding Window using Deque                | Queue        | Maintain max/min over window          |
+| 8  | BFS / Level Order / Rotten Oranges        | Queue        | Level-based traversal                 |
+| 9  | LRU Cache                                 | Queue + Hash | Cache eviction policy                 |
+| 10 | Topological Sort / Kahn’s Algo            | Queue        | Process in-degree order               |
+
+---
+
+## 🧠 4️⃣ Pattern-Wise Deep Dive
+
+---
+
+### 🧩 **Pattern 1: Monotonic Stack**
+
+**When to use:**
+You need to find “next greater” or “next smaller” elements efficiently.
+
+**Concept:**
+Maintain a stack that is **monotonic (increasing/decreasing)**.
+For each element:
+
+* Pop while the condition breaks
+* Use top as previous/next boundary
+
+**Example:** *Next Greater Element*
+
+```cpp
+vector<int> nextGreater(vector<int>& nums) {
+    int n = nums.size();
+    vector<int> ans(n, -1);
+    stack<int> st;
+    for (int i = 0; i < n; i++) {
+        while (!st.empty() && nums[i] > nums[st.top()]) {
+            ans[st.top()] = nums[i];
+            st.pop();
+        }
+        st.push(i);
+    }
+    return ans;
+}
+```
+
+✅ Example: `[2,1,2,4,3] → [4,2,4,-1,-1]`
+
+**Practice Problems:**
+
+* [Leetcode 496. Next Greater Element I](https://leetcode.com/problems/next-greater-element-i/)
+* [Leetcode 503. Next Greater Element II](https://leetcode.com/problems/next-greater-element-ii/)
+* [Leetcode 739. Daily Temperatures](https://leetcode.com/problems/daily-temperatures/)
+
+---
+
+### 🧩 **Pattern 2: Next Greater/Smaller Element Variants**
+
+**When to use:**
+You need to find next/previous smaller/greater for each element → useful in range & histogram problems.
+
+| Variant            | Stack Type | Example    |
+| ------------------ | ---------- | ---------- |
+| Next Greater Right | Decreasing | LC 496     |
+| Next Smaller Right | Increasing | Histogram  |
+| Next Greater Left  | Decreasing | Stock Span |
+| Next Smaller Left  | Increasing | Histogram  |
+
+**Example:** *Next Smaller to Right*
+
+```cpp
+vector<int> nextSmaller(vector<int>& nums) {
+    int n = nums.size();
+    vector<int> ans(n, n);
+    stack<int> st;
+    for (int i = n - 1; i >= 0; i--) {
+        while (!st.empty() && nums[st.top()] >= nums[i]) st.pop();
+        if (!st.empty()) ans[i] = st.top();
+        st.push(i);
+    }
+    return ans;
+}
+```
+
+---
+
+### 🧩 **Pattern 3: Stock Span & Largest Rectangle in Histogram**
+
+**When to use:**
+Compute span/area using previous & next smaller elements.
+
+**Example:** *Stock Span*
+
+```cpp
+vector<int> stockSpan(vector<int>& prices) {
+    int n = prices.size();
+    vector<int> span(n);
+    stack<int> st;
+    for (int i = 0; i < n; i++) {
+        while (!st.empty() && prices[st.top()] <= prices[i]) st.pop();
+        span[i] = st.empty() ? (i+1) : (i - st.top());
+        st.push(i);
+    }
+    return span;
+}
+```
+
+✅ Example: `[100,80,60,70,60,75,85] → [1,1,1,2,1,4,6]`
+
+**Practice Problems:**
+
+* [Leetcode 84. Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/)
+* [Leetcode 85. Maximal Rectangle](https://leetcode.com/problems/maximal-rectangle/)
+* [GFG Stock Span Problem](https://practice.geeksforgeeks.org/problems/stock-span-problem-1587115621/)
+
+---
+
+### 🧩 **Pattern 4: Valid Parentheses & Expression Evaluation**
+
+**When to use:**
+Matching brackets, postfix/prefix evaluation, or expression simplification.
+
+**Example:** *Valid Parentheses*
+
+```cpp
+bool isValid(string s) {
+    stack<char> st;
+    for (char c : s) {
+        if (c == '(' || c == '{' || c == '[') st.push(c);
+        else {
+            if (st.empty()) return false;
+            if ((c == ')' && st.top() != '(') ||
+                (c == '}' && st.top() != '{') ||
+                (c == ']' && st.top() != '[')) return false;
+            st.pop();
+        }
+    }
+    return st.empty();
+}
+```
+
+✅ Example: `"()[]{}" → true`
+
+**Practice Problems:**
+
+* [Leetcode 20. Valid Parentheses](https://leetcode.com/problems/valid-parentheses/)
+* [Leetcode 150. Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/)
+* [Leetcode 224. Basic Calculator](https://leetcode.com/problems/basic-calculator/)
+
+---
+
+### 🧩 **Pattern 5: Min Stack / Max Stack**
+
+**When to use:**
+Need constant-time access to min/max element during push/pop.
+
+**Approach:**
+Maintain an auxiliary stack to track min values.
+
+**Example:** *Min Stack*
+
+```cpp
+class MinStack {
+    stack<int> st, minSt;
+public:
+    void push(int x) {
+        st.push(x);
+        if (minSt.empty() || x <= minSt.top()) minSt.push(x);
+    }
+    void pop() {
+        if (st.top() == minSt.top()) minSt.pop();
+        st.pop();
+    }
+    int top() { return st.top(); }
+    int getMin() { return minSt.top(); }
+};
+```
+
+**Practice Problems:**
+
+* [Leetcode 155. Min Stack](https://leetcode.com/problems/min-stack/)
+* [Leetcode 716. Max Stack](https://leetcode.com/problems/max-stack/)
+
+---
+
+### 🧩 **Pattern 6: Queue using Stacks / Stack using Queues**
+
+**When to use:**
+Implementation & logic-based questions.
+
+**Example:** *Implement Queue using Two Stacks*
+
+```cpp
+class MyQueue {
+    stack<int> in, out;
+public:
+    void push(int x) { in.push(x); }
+    int pop() {
+        if (out.empty()) while (!in.empty()) out.push(in.top()), in.pop();
+        int val = out.top(); out.pop();
+        return val;
+    }
+    int peek() {
+        if (out.empty()) while (!in.empty()) out.push(in.top()), in.pop();
+        return out.top();
+    }
+    bool empty() { return in.empty() && out.empty(); }
+};
+```
+
+**Practice Problems:**
+
+* [Leetcode 232. Implement Queue using Stacks](https://leetcode.com/problems/implement-queue-using-stacks/)
+* [Leetcode 225. Implement Stack using Queues](https://leetcode.com/problems/implement-stack-using-queues/)
+
+---
+
+### 🧩 **Pattern 7: Sliding Window (Using Deque)**
+
+**When to use:**
+Find max/min in every window of size `k`.
+
+**Approach:**
+
+* Use deque to store indexes
+* Maintain decreasing order of values
+* Pop elements outside window
+
+**Example:**
+
+```cpp
+vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+    deque<int> dq;
+    vector<int> res;
+    for (int i = 0; i < nums.size(); i++) {
+        while (!dq.empty() && dq.front() <= i - k) dq.pop_front();
+        while (!dq.empty() && nums[dq.back()] <= nums[i]) dq.pop_back();
+        dq.push_back(i);
+        if (i >= k - 1) res.push_back(nums[dq.front()]);
+    }
+    return res;
+}
+```
+
+✅ Example: `[1,3,-1,-3,5,3,6,7], k=3 → [3,3,5,5,6,7]`
+
+**Practice Problems:**
+
+* [Leetcode 239. Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/)
+* [Leetcode 862. Shortest Subarray with Sum ≥ K](https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/)
+
+---
+
+### 🧩 **Pattern 8: BFS / Level Order / Rotten Oranges (Queue)**
+
+**When to use:**
+Level-by-level traversal or spreading process.
+
+**Example:**
+
+```cpp
+int orangesRotting(vector<vector<int>>& grid) {
+    int m = grid.size(), n = grid[0].size();
+    queue<pair<int,int>> q;
+    int fresh = 0, time = 0;
+
+    for (int i=0;i<m;i++)
+        for (int j=0;j<n;j++)
+            if (grid[i][j]==2) q.push({i,j});
+            else if (grid[i][j]==1) fresh++;
+
+    vector<int> dir = {1,0,-1,0,1};
+    while (!q.empty() && fresh) {
+        int sz = q.size(); time++;
+        while (sz--) {
+            auto [x,y] = q.front(); q.pop();
+            for (int k=0;k<4;k++) {
+                int nx=x+dir[k], ny=y+dir[k+1];
+                if (nx<0||ny<0||nx>=m||ny>=n||grid[nx][ny]!=1) continue;
+                grid[nx][ny]=2; fresh--; q.push({nx,ny});
+            }
+        }
+    }
+    return fresh? -1: time;
+}
+```
+
+✅ **Pattern:** BFS with time-tracking
+
+**Practice Problems:**
+
+* [Leetcode 994. Rotting Oranges](https://leetcode.com/problems/rotting-oranges/)
+* [Leetcode 102. Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)
+
+---
+
+### 🧩 **Pattern 9: LRU Cache (Queue + Hash)**
+
+**When to use:**
+Cache problems with eviction policies.
+
+**Approach:**
+Use **doubly linked list + unordered_map**
+
+**Example:**
+
+* [Leetcode 146. LRU Cache](https://leetcode.com/problems/lru-cache/)
+* [Leetcode 460. LFU Cache](https://leetcode.com/problems/lfu-cache/)
+
+---
+
+### 🧩 **Pattern 10: Topological Sort (Queue)**
+
+**When to use:**
+Dependency order problems (DAG).
+
+**Approach:**
+
+* Compute indegree for all nodes
+* Push nodes with indegree=0 into queue
+* Process and reduce indegree of neighbors
+
+**Example:**
+
+```cpp
+vector<int> topoSort(int V, vector<vector<int>>& adj) {
+    vector<int> indeg(V,0), res;
+    for (auto& u : adj) for (int v : u) indeg[v]++;
+    queue<int> q;
+    for (int i=0;i<V;i++) if (!indeg[i]) q.push(i);
+    while (!q.empty()) {
+        int u=q.front(); q.pop(); res.push_back(u);
+        for (int v:adj[u]) if(--indeg[v]==0) q.push(v);
+    }
+    return res;
+}
+```
+
+**Practice Problems:**
+
+* [Leetcode 207. Course Schedule](https://leetcode.com/problems/course-schedule/)
+* [Leetcode 210. Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)
+
+---
+
+## 🧭 5️⃣ Pattern Summary Table
+
+| Pattern            | Data Structure | Use Case              |
+| ------------------ | -------------- | --------------------- |
+| Monotonic Stack    | Stack          | Range/Next element    |
+| Expression Parsing | Stack          | Validity & evaluation |
+| Min/Max Stack      | Stack          | Dynamic min/max       |
+| Sliding Window     | Deque          | Max/Min in subarray   |
+| BFS/Traversal      | Queue          | Graph & Tree BFS      |
+| LRU / Scheduling   | Queue+Hash     | Eviction policy       |
+| Topological Sort   | Queue          | Dependency order      |
+
+---
+
+## 🧩 6️⃣ Practice Roadmap
+
+**🟢 Beginner**
+
+* LC 20: Valid Parentheses
+* LC 232: Implement Queue using Stacks
+* LC 155: Min Stack
+
+**🟡 Intermediate**
+
+* LC 496: Next Greater Element
+* LC 739: Daily Temperatures
+* LC 239: Sliding Window Maximum
+* LC 994: Rotting Oranges
+
+**🔴 Advanced**
+
+* LC 84: Largest Rectangle in Histogram
+* LC 295: Median Finder
+* LC 146: LRU Cache
+* LC 210: Course Schedule II
+
+---
+
+## 🧠 Key Insight:
+
+> Stack = “remember the previous useful state”
+> Queue = “process items in the correct order”
+
+---

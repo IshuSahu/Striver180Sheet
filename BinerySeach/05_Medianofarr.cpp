@@ -104,7 +104,14 @@ Space Complexity: O(1)
 */
 
 // using Bineray search
+/*
+Key Idea: “Partition” Both Arrays
+Left part: all numbers smaller or equal to right part numbers.
 
+A: [1, 3 | 8]
+B: [7, 9 | 10, 11]
+
+*/
 double findMedianSortedArrays(vector<int> &A, vector<int> &B)
 {
     if (A.size() > B.size())
@@ -123,7 +130,8 @@ double findMedianSortedArrays(vector<int> &A, vector<int> &B)
 
         int maxLeftB = (partitionB == 0) ? INT_MIN : B[partitionB - 1];
         int minRightB = (partitionB == m) ? INT_MAX : B[partitionB];
-
+        
+        //If this condition holds → we found the correct partition.
         if (maxLeftA <= minRightB && maxLeftB <= minRightA)
         {
             if ((n + m) % 2 == 0)

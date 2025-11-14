@@ -99,12 +99,12 @@ string makePalindrome(string s);
 int main()
 {
     string s2 = "aacecaaa";
-    string s1 = "abcd"; // worst case input
+    string s1 = "abcdc"; // worst case input
 
-    cout << minCharsToMakePalindrome2(s1) << endl; // Output: 1
-    cout << minCharsToMakePalindrome2(s2) << endl; // Output: 3
-    cout << makePalindrome(s2) << endl;            // Output: 3
-    cout << makePalindrome(s2) << endl;            // Output: 3
+    cout << minCharsToMakePalindrome(s1) << endl; // Output: 1 
+    cout << minCharsToMakePalindrome2(s1) << endl; // Output: 3
+    // cout << makePalindrome(s2) << endl;            // Output: 3
+    cout << makePalindrome(s1) << endl;            // Output: 3
 
     return 0;
 }
@@ -123,7 +123,6 @@ string makePalindrome(string s)
 
     // Characters after the palindrome prefix
     string suffix = s.substr(i + 1);
-
     // Reverse the suffix and add at the front
     reverse(suffix.begin(), suffix.end());
     return suffix + s;

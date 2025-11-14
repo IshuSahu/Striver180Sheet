@@ -1,18 +1,4 @@
-Perfect 🔥 Ishu — now we’re stepping into one of the most **conceptually powerful and interview-defining topics**:
-
 # 🌀 **Recursion & Backtracking — Pattern Wise Mastery Guide**
-
-This is where problems test your **logic + exploration mindset**.
-After this structured guide, you’ll clearly understand:
-
-* ✅ How recursion actually flows
-* ✅ What backtracking means
-* ✅ Common problem patterns
-* ✅ Step-by-step solving approach
-* ✅ 1 worked-out example per pattern
-* ✅ Key practice problems
-
----
 
 ## 🚀 1️⃣ What Is Recursion?
 

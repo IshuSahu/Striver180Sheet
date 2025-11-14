@@ -27,3 +27,8 @@ int main()
     cout << "Ways to climb " << n << " stairs: " << ways(n, dp) << endl;
     return 0;
 }
+
+/*
+TC: O(n) -> Each subproblem (ways(k)) is computed once and stored in dp, so total work is linear.
+SC: O(n) -> for the dp array
+*/

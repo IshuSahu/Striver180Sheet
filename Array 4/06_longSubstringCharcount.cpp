@@ -35,13 +35,13 @@ int solve2(string str)
         return 0;
     int maxL = 0;
     unordered_set<int> st;
-    int l = 0; // Pointer to the left side of the window
+    int l = 0; // Pointer to the left side of the window 
 
     for (int i = 0; i < str.length(); i++)
     {
         if (st.find(str[i]) != st.end())
         {
-            while (l < i && st.find(str[i]) != st.end())
+            while (l < i && st.find(str[i]) != st.end()) // remove upto element found
             {
                 st.erase(str[l]);
                 l++;

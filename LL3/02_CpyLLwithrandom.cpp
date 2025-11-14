@@ -28,7 +28,8 @@ Node *cloneLL(Node *head)
     while (temp != nullptr)
     {
         Node *copyNode = mpp[temp];
-        copyNode->next = mpp[temp->next]; //mpp[temp]->next = mpp[temp->next];//assign nullptr if temp->next is nullptr
+        copyNode->next = mpp[temp->next]; //mpp[temp]->next = mpp[temp->next];
+        //assign nullptr if temp->next is nullptr
         copyNode->random = mpp[temp->random];
         temp = temp->next;
     }

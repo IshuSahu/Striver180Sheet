@@ -31,7 +31,7 @@ int solve(vector<int> &a)
 
 int main()
 {
-    vector<int> a = {1, -1, 2, -2, 3};
+    vector<int> a = {1,-1,3,2,-2,-8,1,7};
     cout << solve(a) << endl;
 
     return 0;
